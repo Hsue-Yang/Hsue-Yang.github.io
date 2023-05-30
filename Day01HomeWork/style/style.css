@@ -1,0 +1,244 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+header div.Top {
+  display: flex;
+  justify-content: space-around;
+  background-color: #202020;
+}
+header div.Top div.phone {
+  display: flex;
+  margin: 10px 0px;
+}
+header div.Top div.phone img {
+  width: 2rem;
+  height: 2rem;
+}
+header div.Top div.phone p {
+  font-size: 1.5rem;
+  -webkit-text-decoration: solid;
+          text-decoration: solid;
+  color: white;
+  padding-left: 0.5rem;
+}
+header div.Top section.icon {
+  margin: 10px 0px;
+}
+header div.Top section.icon a img {
+  width: 2rem;
+  height: 2rem;
+  background-color: white;
+  border-radius: 50%;
+}
+header div.Secondheader {
+  display: flex;
+  justify-content: center;
+  min-width: 70%;
+  width: 100%;
+}
+header div.Secondheader div.Title {
+  display: flex;
+  margin: 20px 0;
+}
+header div.Secondheader div.Title img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+header div.Secondheader div.Title p {
+  font-size: 3rem;
+}
+header div.Secondheader div.headerNav {
+  display: flex;
+}
+header div.Secondheader div.headerNav nav ul {
+  display: flex;
+  margin: 2rem 0;
+}
+header div.Secondheader div.headerNav nav ul li {
+  list-style: none;
+}
+header div.Secondheader div.headerNav nav ul li a {
+  font-size: 1.5rem;
+  padding: 2rem;
+  text-decoration: none;
+  color: black;
+}
+header div.Secondheader div.headerNav div.donate {
+  margin: 30px 30px 30px 30px;
+}
+header div.Secondheader div.headerNav div.donate a {
+  text-decoration: none;
+  color: orange;
+  border: 2px solid orange;
+  padding: 1rem;
+  font-size: 1rem;
+}
+header div.Secondheader div.headerNav div.donate a:hover {
+  background-color: lightblue;
+  color: white;
+  border: none;
+}
+
+main section.firstimg {
+  background-image: url(../asset\ 4.jpeg);
+  background-position: center;
+  background-size: cover;
+  min-height: 70vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+}
+main section.firstimg div {
+  font-size: 3rem;
+  margin-right: 42rem;
+}
+main section.firstimg div h4 {
+  color: gray;
+}
+main section.firstimg div h4 span {
+  font-size: 5rem;
+}
+main section.firstimg div p {
+  font-size: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+main section.firstimg div a {
+  text-decoration: none;
+  color: white;
+  background-color: orange;
+  padding: 1.5rem 3rem;
+  border-radius: 2%;
+  font-size: 0.8rem;
+  margin-right: 2rem;
+}
+main section.firstimg div a:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+main section.secondimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  width: 100%;
+}
+main section.secondimg img {
+  max-width: 30vw;
+  max-height: 100vh;
+  margin-right: 2rem;
+}
+main section.secondimg div.secondright {
+  text-align: left;
+  max-width: 30vw;
+  margin-right: 5rem;
+}
+main section.secondimg div.secondright h4 {
+  font-size: 3rem;
+}
+main section.secondimg div.secondright h4 span {
+  font-size: 2rem;
+}
+main section.secondimg div.secondright p {
+  padding-top: 2rem;
+  line-height: 1.2rem;
+  color: gray;
+  padding-bottom: 3rem;
+}
+main section.secondimg div.secondright a {
+  text-decoration: none;
+  color: white;
+  background-color: orange;
+  padding: 1.5rem 3rem;
+  border-radius: 2%;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+main section.secondimg div.secondright a:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+footer {
+  width: 100%;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: rgb(248, 245, 245);
+  position: relative;
+}
+footer h4 {
+  margin-top: 3rem;
+  font-size: 3rem;
+  color: gray;
+  margin-bottom: 3rem;
+}
+footer h4 span {
+  font-size: 2rem;
+}
+footer div.allcard {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+footer div.allcard div.card {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+footer div.allcard div.card img {
+  max-height: 100%;
+  max-width: 90%;
+  position: relative;
+}
+footer div.allcard div.card img:hover {
+  opacity: 0.8;
+}
+footer div.allcard div.card h5 {
+  font-size: 2rem;
+  color: black;
+  position: absolute;
+  margin: 10rem;
+  margin-top: 22rem;
+  margin-left: 6.5rem;
+  color: white;
+  cursor: pointer;
+}
+footer div.allcard div.card h5:hover {
+  color: orange;
+}
+
+div.fix {
+  position: fixed;
+  display: flex;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+}
+div.fix a {
+  padding: 1rem;
+}
+div.fix a img {
+  width: 70px;
+  height: 70px;
+}/*# sourceMappingURL=style.css.map */

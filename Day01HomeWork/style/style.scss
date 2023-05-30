@@ -1,0 +1,253 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+body {
+  position: relative;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  div.Top {
+    display: flex;
+    justify-content: space-around;
+    background-color: #202020;
+    div.phone {
+      display: flex;
+      margin: 10px 0px;
+      img {
+        width: 2rem;
+        height: 2rem;
+      }
+      p {
+        font-size: 1.5rem;
+        text-decoration: solid;
+        color: white;
+        padding-left: 0.5rem;
+      }
+    }
+    section.icon {
+      margin: 10px 0px;
+
+      a {
+        img {
+          width: 2rem;
+          height: 2rem;
+          background-color: white;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  div.Secondheader {
+    display: flex;
+    justify-content: center;
+    min-width: 70%;
+    width: 100%;
+    // margin: 10px 18rem;
+    div.Title {
+      display: flex;
+      margin: 20px 0;
+
+      img {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+      p {
+        font-size: 3rem;
+      }
+    }
+    div.headerNav {
+      display: flex;
+      nav {
+        ul {
+          display: flex;
+          margin: 2rem 0;
+          li {
+            list-style: none;
+
+            a {
+              font-size: 1.5rem;
+              padding: 2rem;
+              text-decoration: none;
+              color: black;
+            }
+          }
+        }
+      }
+      div.donate {
+        margin: 30px 30px 30px 30px;
+        a {
+          text-decoration: none;
+          color: orange;
+          border: 2px solid orange;
+          padding: 1rem;
+          font-size: 1rem;
+        }
+        a:hover {
+          background-color: lightblue;
+          color: white;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+main {
+  section.firstimg {
+    background-image: url(../asset\ 4.jpeg);
+    background-position: center;
+    background-size: cover;
+    min-height: 70vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    div {
+      font-size: 3rem;
+      margin-right: 42rem;
+      h4 {
+        color: gray;
+        span {
+          font-size: 5rem;
+        }
+      }
+      p {
+        font-size: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        background-color: orange;
+        padding: 1.5rem 3rem;
+        border-radius: 2%;
+        font-size: 0.8rem;
+        margin-right: 2rem;
+      }
+      a:hover {
+        background-color: black;
+        color: white;
+        border: none;
+      }
+    }
+  }
+  section.secondimg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    width: 100%;
+    img {
+      max-width: 30vw;
+      max-height: 100vh;
+      margin-right: 2rem;
+    }
+    div.secondright {
+      text-align: left;
+      max-width: 30vw;
+      margin-right: 5rem;
+      h4 {
+        font-size: 3rem;
+        span {
+          font-size: 2rem;
+        }
+      }
+      p {
+        padding-top: 2rem;
+        line-height: 1.2rem;
+        color: gray;
+        padding-bottom: 3rem;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        background-color: orange;
+        padding: 1.5rem 3rem;
+        border-radius: 2%;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
+      a:hover {
+        background-color: black;
+        color: white;
+        border: none;
+      }
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: rgb(248, 245, 245);
+  position: relative;
+  h4 {
+    margin-top: 3rem;
+    font-size: 3rem;
+    color: gray;
+    margin-bottom: 3rem;
+    span {
+      font-size: 2rem;
+    }
+  }
+  div.allcard {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    div.card {
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      img {
+        max-height: 100%;
+        max-width: 90%;
+        position: relative;
+      }
+      img:hover {
+        opacity: 0.8;
+      }
+      h5 {
+        font-size: 2rem;
+        color: black;
+        position: absolute;
+        margin: 10rem;
+        margin-top: 22rem;
+        margin-left: 6.5rem;
+        color: white;
+        cursor: pointer;
+      }
+      h5:hover {
+        color: orange;
+      }
+    }
+  }
+}
+
+div.fix {
+  position: fixed;
+  display: flex;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  a {
+    padding: 1rem;
+    img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+}
