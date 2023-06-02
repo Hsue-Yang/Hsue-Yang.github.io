@@ -68,61 +68,71 @@ header div.headertwo p {
   padding-top: 2rem;
 }
 
-main section.cardtext {
+main div.cardtext {
   display: flex;
-  min-width: 80%;
   justify-content: center;
-  margin: 4rem 200px;
+  align-items: center;
+  text-align: left;
+  box-sizing: border-box;
+  flex-direction: row;
 }
-main section.cardtext div.card {
-  width: 40%;
+main div.cardtext div.card {
+  width: -moz-fit-content;
+  width: fit-content;
 }
-main section.cardtext div.card img {
+main div.cardtext div.card img {
   width: 425px;
   height: 400px;
 }
-main section.cardtext div.part {
-  width: 36%;
+main div.cardtext div.part {
+  width: 510px;
+  box-sizing: border-box;
+  margin: 20px 30px;
 }
-main section.cardtext div.part div.text {
-  padding-top: 20px;
-}
-main section.cardtext div.part div.text h2 {
+main div.cardtext div.part div.text h2 {
   font-weight: bold;
 }
-main section.cardtext div.part div.text p {
+main div.cardtext div.part div.text p {
   font-size: 16px;
   padding: 20px 0px;
 }
-main section.cardtext div.part nav {
-  max-height: 30%;
-  width: 80%;
-}
-main section.cardtext div.part nav ul {
+main div.cardtext div.part nav ul {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  height: 100px;
 }
-main section.cardtext div.part nav ul li {
+main div.cardtext div.part nav ul li {
+  list-style-type: none;
   padding: 3px;
 }
-main section.cardtext div.part div.arrow {
+main div.cardtext div.part nav ul li::before {
+  content: "";
+  display: inline-block;
+  margin-right: 10px;
+  width: 5px;
+  height: 5px;
+  background-color: #052855;
+  border-radius: 50%;
+}
+main div.cardtext div.part div.arrow {
   display: flex;
   margin-top: 40px;
 }
-main section.cardtext div.part div.arrow a {
+main div.cardtext div.part div.arrow a {
   display: inline-block;
   border-bottom: 2px solid rgb(16, 96, 188);
   color: rgb(16, 96, 188);
   text-decoration: none;
 }
-main section.cardtext div.part div.arrow img {
+main div.cardtext div.part div.arrow img {
   width: 25px;
   height: 25px;
   margin-left: 5px;
   cursor: pointer;
 }
-main section.cardtext div.part div.arrow img:hover {
+main div.cardtext div.part div.arrow img:hover {
   margin-left: 15px;
   transition: all 0.5s ease;
 }

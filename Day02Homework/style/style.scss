@@ -74,22 +74,27 @@ header {
 }
 
 main {
-  section.cardtext {
+  div.cardtext {
     display: flex;
-    min-width: 80%;
+
     justify-content: center;
-    margin: 4rem 200px;
+    align-items: center;
+
+    text-align: left;
+    box-sizing: border-box;
+    flex-direction: row;
     div.card {
-      width: 40%;
+      width: fit-content;
       img {
         width: 425px;
         height: 400px;
       }
     }
     div.part {
-      width: 36%;
+      width: 510px;
+      box-sizing: border-box;
+      margin: 20px 30px;
       div.text {
-        padding-top: 20px;
         h2 {
           font-weight: bold;
         }
@@ -99,15 +104,25 @@ main {
         }
       }
       nav {
-        // background-color: aqua;
-        max-height: 30%;
-        width: 80%;
         ul {
           display: flex;
+          flex-direction: column;
+          justify-content: space-between;
           flex-wrap: wrap;
-          justify-content: flex-start;
+          height: 100px;
+
           li {
+            list-style-type: none;
             padding: 3px;
+          }
+          li::before {
+            content: "";
+            display: inline-block;
+            margin-right: 10px;
+            width: 5px;
+            height: 5px;
+            background-color: #052855;
+            border-radius: 50%;
           }
         }
       }
