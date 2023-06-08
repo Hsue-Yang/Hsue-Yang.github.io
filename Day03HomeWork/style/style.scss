@@ -1,0 +1,733 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  width: 100%;
+  nav {
+    width: 100%;
+    background-color: black;
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      li {
+        margin: 0px 5px;
+        list-style: none;
+        a {
+          display: block;
+          text-align: center;
+          padding: 25px 60px;
+          //   background-color: yellow;
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+main {
+  width: 960px;
+  // outline: 2px solid red;
+  margin: auto;
+  section.remote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 960px;
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 500px;
+    div.pic {
+      position: relative;
+      width: 695px;
+      div.btn {
+        width: 60px;
+        height: 40px;
+        background-color: rgb(215, 2, 2);
+        position: relative;
+        left: 650px;
+        bottom: 220px;
+        cursor: pointer;
+      }
+      div.btn::after {
+        content: "";
+        display: inline-block;
+        background-color: #eeeeee;
+        clip-path: polygon(30% 23%, 80% 38%, 30% 60%);
+        width: 50px;
+        height: 50px;
+      }
+      a {
+        width: 100%;
+        img {
+          height: 430px;
+          width: 695px;
+        }
+      }
+      div.card {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+        position: absolute;
+        top: -140px;
+        left: -180px;
+        div.title {
+          background-color: rgb(227, 2, 2);
+          color: white;
+          display: flex;
+          align-items: center;
+          font-size: 0;
+          h1 {
+            font-weight: 10;
+            writing-mode: vertical-lr;
+            font-size: 140px;
+            line-height: 100px;
+          }
+          h2 {
+            padding-left: 10px;
+            font-size: 50px;
+          }
+        }
+        div.text {
+          background-color: black;
+          color: white;
+          padding: 20px;
+          line-height: 1.5;
+          text-align: justify;
+          h4 {
+            font-weight: 900;
+            font-size: 1.5em;
+          }
+          p {
+            font-weight: 100;
+            font-size: 1.2em;
+          }
+        }
+      }
+      div.bcg {
+        background-color: #eeeeee;
+        opacity: 6;
+        width: 450px;
+        height: 250px;
+        position: absolute;
+        right: -70px;
+        top: -60px;
+        z-index: -1;
+      }
+
+      div.memo {
+        background-color: lightgray;
+        width: 700px;
+        padding: 20px;
+        padding-bottom: 10px;
+        line-height: 1.5;
+        position: absolute;
+        top: 390px;
+        left: -140px;
+        h5 {
+          font-size: 1.2em;
+          color: rgb(227, 2, 2);
+          font-weight: 900;
+        }
+        h5::after {
+          content: "";
+          display: inline-block;
+          height: 1px;
+          width: 450px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+        }
+        h6 {
+          font-size: 1em;
+          padding: 2px 5px;
+          background-color: black;
+          width: fit-content;
+          color: white;
+        }
+        p {
+          font-weight: 500;
+          vertical-align: middle;
+          padding: 4px 2px;
+          padding-left: 20px;
+          text-indent: -10px;
+          text-align: justify;
+        }
+        p::before {
+          content: "";
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  section.safety {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 960px;
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 500px;
+    div.pic {
+      position: relative;
+      width: 695px;
+      div.btn {
+        width: 60px;
+        height: 40px;
+        background-color: rgb(215, 2, 2);
+        position: relative;
+        left: 650px;
+        bottom: 220px;
+        cursor: pointer;
+      }
+      div.btn::after {
+        content: "";
+        display: inline-block;
+        background-color: #eeeeee;
+        clip-path: polygon(30% 23%, 80% 38%, 30% 60%);
+        width: 50px;
+        height: 50px;
+      }
+      a {
+        width: 100%;
+        img {
+          height: 430px;
+          width: 695px;
+        }
+      }
+      div.card {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+        position: absolute;
+        top: -140px;
+        left: -180px;
+        div.title {
+          background-color: rgb(227, 2, 2);
+          color: white;
+          display: flex;
+          align-items: center;
+          font-size: 0;
+          h1 {
+            font-weight: 10;
+            writing-mode: vertical-lr;
+            font-size: 140px;
+            line-height: 100px;
+          }
+          h2 {
+            padding-left: 10px;
+            font-size: 50px;
+          }
+        }
+        div.text {
+          background-color: black;
+          color: white;
+          padding: 20px;
+          line-height: 1.5;
+          text-align: justify;
+          h4 {
+            font-weight: 900;
+            font-size: 1.5em;
+          }
+          p {
+            font-weight: 100;
+            font-size: 1.2em;
+          }
+        }
+      }
+      div.bcg {
+        background-color: #eeeeee;
+        opacity: 6;
+        width: 450px;
+        height: 250px;
+        position: absolute;
+        right: -70px;
+        top: -60px;
+        z-index: -1;
+      }
+
+      div.memo {
+        background-color: lightgray;
+        width: 700px;
+        padding: 20px;
+        padding-bottom: 10px;
+        line-height: 1.5;
+        position: absolute;
+        top: 390px;
+        left: -140px;
+        h5 {
+          font-size: 1.2em;
+          color: rgb(227, 2, 2);
+          font-weight: 900;
+        }
+        h5::after {
+          content: "";
+          display: inline-block;
+          height: 1px;
+          width: 450px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+        }
+        h6 {
+          font-size: 1em;
+          padding: 2px 5px;
+          background-color: black;
+          width: fit-content;
+          color: white;
+        }
+        p {
+          font-weight: 500;
+          vertical-align: middle;
+          padding: 4px 2px;
+          padding-left: 20px;
+          text-indent: -10px;
+          text-align: justify;
+        }
+        p::before {
+          content: "";
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  section.comfort {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 960px;
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 500px;
+    div.pic {
+      position: relative;
+      width: 695px;
+      div.btn {
+        width: 60px;
+        height: 40px;
+        background-color: rgb(215, 2, 2);
+        position: relative;
+        left: 650px;
+        bottom: 220px;
+        cursor: pointer;
+      }
+      div.btn::after {
+        content: "";
+        display: inline-block;
+        background-color: #eeeeee;
+        clip-path: polygon(30% 23%, 80% 38%, 30% 60%);
+        width: 50px;
+        height: 50px;
+      }
+      a {
+        width: 100%;
+        img {
+          height: 430px;
+          width: 695px;
+        }
+      }
+      div.card {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+        position: absolute;
+        top: -140px;
+        left: -180px;
+        div.title {
+          background-color: rgb(227, 2, 2);
+          color: white;
+          display: flex;
+          align-items: center;
+          font-size: 0;
+          h1 {
+            font-weight: 10;
+            writing-mode: vertical-lr;
+            font-size: 140px;
+            line-height: 100px;
+          }
+          h2 {
+            padding-left: 10px;
+            font-size: 50px;
+          }
+        }
+        div.text {
+          background-color: black;
+          color: white;
+          padding: 20px;
+          line-height: 1.5;
+          text-align: justify;
+          h4 {
+            font-weight: 900;
+            font-size: 1.5em;
+          }
+          p {
+            font-weight: 100;
+            font-size: 1.2em;
+          }
+        }
+      }
+      div.bcg {
+        background-color: #eeeeee;
+        opacity: 6;
+        width: 450px;
+        height: 250px;
+        position: absolute;
+        right: -70px;
+        top: -60px;
+        z-index: -1;
+      }
+
+      div.memo {
+        background-color: lightgray;
+        width: 700px;
+        padding: 20px;
+        padding-bottom: 10px;
+        line-height: 1.5;
+        position: absolute;
+        top: 390px;
+        left: -140px;
+        h5 {
+          font-size: 1.2em;
+          color: rgb(227, 2, 2);
+          font-weight: 900;
+        }
+        h5::after {
+          content: "";
+          display: inline-block;
+          height: 1px;
+          width: 450px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+        }
+        h6 {
+          font-size: 1em;
+          padding: 2px 5px;
+          background-color: black;
+          width: fit-content;
+          color: white;
+        }
+        p {
+          font-weight: 500;
+          vertical-align: middle;
+          padding: 4px 2px;
+          padding-left: 20px;
+          text-indent: -10px;
+          text-align: justify;
+        }
+        p::before {
+          content: "";
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  section.thoughtful {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 960px;
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 500px;
+    div.pic {
+      position: relative;
+      width: 695px;
+      div.btn {
+        width: 60px;
+        height: 40px;
+        background-color: rgb(215, 2, 2);
+        position: relative;
+        left: 650px;
+        bottom: 220px;
+        cursor: pointer;
+      }
+      div.btn::after {
+        content: "";
+        display: inline-block;
+        background-color: #eeeeee;
+        clip-path: polygon(30% 23%, 80% 38%, 30% 60%);
+        width: 50px;
+        height: 50px;
+      }
+      a {
+        width: 100%;
+        img {
+          height: 430px;
+          width: 695px;
+        }
+      }
+      div.card {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+        position: absolute;
+        top: -140px;
+        left: -180px;
+        div.title {
+          background-color: rgb(227, 2, 2);
+          color: white;
+          display: flex;
+          align-items: center;
+          font-size: 0;
+          h1 {
+            font-weight: 10;
+            writing-mode: vertical-lr;
+            font-size: 140px;
+            line-height: 100px;
+          }
+          h2 {
+            padding-left: 10px;
+            font-size: 50px;
+          }
+        }
+        div.text {
+          background-color: black;
+          color: white;
+          padding: 20px;
+          line-height: 1.5;
+          text-align: justify;
+          h4 {
+            font-weight: 900;
+            font-size: 1.5em;
+          }
+          p {
+            font-weight: 100;
+            font-size: 1.2em;
+          }
+        }
+      }
+      div.bcg {
+        background-color: #eeeeee;
+        opacity: 6;
+        width: 450px;
+        height: 250px;
+        position: absolute;
+        right: -70px;
+        top: -60px;
+        z-index: -1;
+      }
+
+      div.memo {
+        background-color: lightgray;
+        width: 700px;
+        padding: 20px;
+        padding-bottom: 10px;
+        line-height: 1.5;
+        position: absolute;
+        top: 390px;
+        left: -140px;
+        h5 {
+          font-size: 1.2em;
+          color: rgb(227, 2, 2);
+          font-weight: 900;
+        }
+        h5::after {
+          content: "";
+          display: inline-block;
+          height: 1px;
+          width: 450px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+        }
+        h6 {
+          font-size: 1em;
+          padding: 2px 5px;
+          background-color: black;
+          width: fit-content;
+          color: white;
+        }
+        p {
+          font-weight: 500;
+          vertical-align: middle;
+          padding: 4px 2px;
+          padding-left: 20px;
+          text-indent: -10px;
+          text-align: justify;
+        }
+        p::before {
+          content: "";
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  section.proud {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 960px;
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    div.pic {
+      position: relative;
+      width: 695px;
+      div.btn {
+        width: 60px;
+        height: 40px;
+        background-color: rgb(215, 2, 2);
+        position: relative;
+        left: 650px;
+        bottom: 220px;
+        cursor: pointer;
+      }
+      div.btn::after {
+        content: "";
+        display: inline-block;
+        background-color: #eeeeee;
+        clip-path: polygon(30% 23%, 80% 38%, 30% 60%);
+        width: 50px;
+        height: 50px;
+      }
+      a {
+        width: 100%;
+        img {
+          height: 430px;
+          width: 695px;
+        }
+      }
+      div.card {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+        position: absolute;
+        top: -140px;
+        left: -180px;
+        div.title {
+          background-color: rgb(227, 2, 2);
+          color: white;
+          display: flex;
+          align-items: center;
+          font-size: 0;
+          h1 {
+            font-weight: 10;
+            writing-mode: vertical-lr;
+            font-size: 140px;
+            line-height: 100px;
+          }
+          h2 {
+            padding-left: 10px;
+            font-size: 50px;
+          }
+        }
+        div.text {
+          background-color: black;
+          color: white;
+          padding: 20px;
+          line-height: 1.5;
+          text-align: justify;
+          h4 {
+            font-weight: 900;
+            font-size: 1.5em;
+          }
+          p {
+            font-weight: 100;
+            font-size: 1.2em;
+          }
+        }
+      }
+      div.bcg {
+        background-color: #eeeeee;
+        opacity: 6;
+        width: 450px;
+        height: 250px;
+        position: absolute;
+        right: -70px;
+        top: -60px;
+        z-index: -1;
+      }
+
+      div.memo {
+        background-color: lightgray;
+        width: 700px;
+        padding: 20px;
+        padding-bottom: 10px;
+        line-height: 1.5;
+        position: absolute;
+        top: 390px;
+        left: -140px;
+        h5 {
+          font-size: 1.2em;
+          color: rgb(227, 2, 2);
+          font-weight: 900;
+        }
+        h5::after {
+          content: "";
+          display: inline-block;
+          height: 1px;
+          width: 450px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+        }
+        h6 {
+          font-size: 1em;
+          padding: 2px 5px;
+          background-color: black;
+          width: fit-content;
+          color: white;
+        }
+        p {
+          font-weight: 500;
+          vertical-align: middle;
+          padding: 4px 2px;
+          padding-left: 20px;
+          text-indent: -10px;
+          text-align: justify;
+        }
+        p::before {
+          content: "";
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          vertical-align: middle;
+          background-color: rgb(227, 2, 2);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  section:nth-child(even) {
+    div.pic {
+      div.btn {
+        left: -10px;
+      }
+      div.card {
+        top: -153px;
+        left: 600px;
+        div.title {
+          display: flex;
+          flex-direction: row-reverse;
+          h2 {
+            padding-right: 10px;
+          }
+        }
+      }
+      div.memo {
+        left: 250px;
+      }
+    }
+  }
+}
