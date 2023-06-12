@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        width: 300px;
+        margin: auto;
+        text-align: center;
+      }
+      .text h1 {
+        letter-spacing: 5px;
+      }
+
+      .btn button {
+        margin: 5px;
+        margin-top: 10px;
+      }
+      .btn button:hover {
+        background-color: rgb(230, 119, 119);
+        color: white;
+        font-size: 20px;
+        border: none;
+      }
+      .btn-num button:hover {
+        background-color: rgb(230, 119, 119);
+        color: white;
+        font-size: 20px;
+        border: none;
+      }
+      .btn-num {
+        display: grid;
+        grid-template-columns: repeat(3, 50px);
+        grid-template-rows: repeat(4, 30px);
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="text">
+        <h1>猜數字遊戲</h1>
+        <input type="number" id="guess-input" placeholder="請輸入數字" />
+        <div class="hint"></div>
+      </div>
+      <div class="btn">
+        <button id="guess-btn">猜!</button
+        ><button id="reset-btn">重新開始</button
+        ><button id="showAns-btn">看答案</button>
+      </div>
+    </div>
+    <div class="btn-num">
+      <button>1</button><button>2</button><button>3</button><button>4</button
+      ><button>5</button><button>6</button><button>7</button><button>8</button
+      ><button>9</button><button>0</button>
+    </div>
+    <script>
+      // 宣告DOM ，用const宣告避免被重複性蓋掉
+      const guessinput = document.getElementById("guess-input");
+      const hintArea = document.querySelector(".hint");
+      const guessBtn = document.getElementById("guess-btn");
+      const resetBtn = document.getElementById("reset-btn");
+      const showAnsBtn = document.querySelector("#showAns-btn");
+      // 宣告變數
+      let minNum, maxNum, answerNum, guessNum;
+      // 產生遊戲開始的數字
+
+      showAnsBtn.addEventListener("click", function () {
+        alert(answerNum);
+      });
+      resetBtn.addEventListener("click", function () {
+        init();
+      });
+      //function名稱後面沒有加小括號，就是按按鈕時才會執行，加小括號的話一載入就會執行!!!
+      guessBtn.addEventListener("click", guess);
+
+      window.addEventListener("load", function () {
+        // console.log("load event");
+        init();
+      });
+      //   document.addEventListener("DOMContentLoaded", function () {
+      //     console.log("DOMContentLoaded event");
+      //     init();
+      //   });
+      //   window.onload = function () {
+      //     init();
+      //   };
+
+      function init() {
+        guessinput.value = "";
+        minNum = 1;
+        maxNum = 100;
+        answerNum = generateAnswer();
+        showHint();
+      }
+
+      function guess(event) {
+        console.log(event);
+        const val = guessinput.value.trim();
+        if (
+          val === "" ||
+          isNaN(val) ||
+          val[0] === "0" ||
+          val < 1 ||
+          val > 100
+        ) {
+          alert("請輸入正確的數字");
+          guessinput.value = "";
+          return;
+        }
+        guessNum = parseInt(val);
+
+        if (isInValidNumRange()) return;
+
+        if (guessNum === answerNum) {
+          alert(`Win 答案是${answerNum}`);
+          init();
+          return;
+        } else if (guessNum < answerNum) {
+          minNum = guessNum;
+        } else if (guessNum > answerNum) {
+          maxNum = guessNum;
+        }
+        guessinput.value = "";
+        showHint();
+      }
+      function isInValidNumRange() {
+        if (guessNum <= minNum || guessNum >= maxNum) {
+          showHint();
+          guessinput.value = "";
+          alert("請確認輸入範圍");
+          return true;
+        }
+        return false;
+      }
+      function showHint() {
+        hintArea.textContent = `請輸入${minNum}-${maxNum}之間的數字`;
+      }
+      function generateAnswer() {
+        return getRandomNum(1, 100);
+      }
+      function getRandomNum(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+        // The maximum is inclusive and the minimum is inclusive
+      }
+
+      // for (let el of btn_group){}
+      //   btn_group.foreach(function (el){
+      //     el.addEventListener('click',insertNum)
+      //   })
+    </script>
+  </body>
+</html>

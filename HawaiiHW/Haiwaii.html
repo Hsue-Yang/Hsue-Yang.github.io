@@ -100,6 +100,9 @@
       .card-list .card-text h4 {
         padding-bottom: 10px;
       }
+      .btn a {
+        position: relative;
+      }
       .btn a::after {
         content: "";
         display: inline-block;
@@ -109,8 +112,8 @@
         height: 20px;
         border: 1px solid #f65936;
         border-radius: 50%;
-        /* clip-path: polygon(25% 50%, 75% 50%, 60% 35%, 60% 65%, 75% 50%); */
-        /* background-color: #f65936; */
+        background: url(https://agito850.github.io/HtmlCSS/Day05/1.Hawaii/img/right_arrow_short.svg);
+        background-repeat: no-repeat;
       }
 
       @media screen and (min-width: 768px) {
@@ -148,10 +151,6 @@
         }
         .main-card .main-text h3 {
           padding: 0;
-        }
-
-        .section:nth-child(even) .allcard > *:first-child {
-          grid-column: 2;
         }
         .section:nth-child(even) .allcard > *:last-child {
           grid-row: 1;
