@@ -3405,16 +3405,10 @@
 
       window.onload = function () {
         container = document.querySelector("#container");
+        result = document.querySelector("#result");
         btnCreateHeroArray = document.getElementById("createhero");
         btnListHero = document.getElementById("listhero");
         btnTableHero = document.getElementById("tablehero");
-        table = document.createElement("table");
-        table.setAttribute(
-          "class",
-          "table table-bordered table-striped table-dark"
-        );
-        thead = document.createElement("thead");
-        tbody = document.createElement("tbody");
 
         heroArray.forEach((list) => {
           let value = Object.values(list);
@@ -3438,13 +3432,14 @@
             alert("請先建立陣列資料");
             return;
           }
+          result.innerHTML = "";
           const ul = document.createElement("ul");
           heroArray.forEach((item) => {
             const li = document.createElement("li");
             li.textContent = `Id:${item.Id},Name:${item.Name},Description:${item.Description},Image:${item.Image}`;
             ul.append(li);
           });
-          document.body.append(ul);
+          result.append(ul);
         });
 
         btnTableHero.addEventListener("click", function () {
@@ -3452,11 +3447,20 @@
             alert("請先建立陣列資料");
             return;
           }
+          result.innerHTML = "";
 
           alert("以表格呈現英雄人物資料！");
+
+          table = document.createElement("table");
+          table.setAttribute(
+            "class",
+            "table table-bordered table-striped table-dark"
+          );
+          thead = document.createElement("thead");
+          tbody = document.createElement("tbody");
+
           createThead();
           createTbody();
-          ul.remove();
         });
       };
 
@@ -3484,7 +3488,7 @@
           tbody.append(tr);
         });
         table.append(tbody);
-        container.append(table);
+        result.append(table);
       }
       function createThead() {
         let tRow = document.createElement("tr");
@@ -3495,7 +3499,7 @@
           thead.append(tH);
         });
         table.append(thead);
-        container.append(table);
+        result.append(table);
       }
     </script>
   </body>

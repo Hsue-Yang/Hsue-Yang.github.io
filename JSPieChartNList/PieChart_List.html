@@ -62,15 +62,31 @@
       let compaines = [],
         data = [];
       let dataArray = [];
+      let pieButton = document.createElement("button");
+      let barButton = document.createElement("button");
+      document.body.append(pieButton);
+      document.body.append(barButton);
+      pieButton.style.padding = "20px";
+      barButton.style.padding = "20px";
+
+      let pieChart
+
+
       window.onload = function () {
         createArrayData();
-        drawChart("pie", compaines, data);
+        // drawChart("pie", compaines, data);
 
         marketingShare.data.forEach((list) => {
           let value = Object.values(list);
           dataArray.push(value);
         });
 
+        pieButton.addEventListener("click", () => {
+          drawChart("pie", compaines, data);
+        });
+        barButton.addEventListener("click", () => {
+          drawChart("bar", compaines, data);
+        });
         createThead();
         createTbody(dataArray);
       };
@@ -106,7 +122,12 @@
 
       function drawChart(chartType, companyArray, dataArray) {
         let ctxPie = document.getElementById("mkShare");
-        var pieChart = new Chart(ctxPie, {
+
+        if (pieChart) {
+          pieChart.clear();
+        }
+
+       pieChart = new Chart(ctxPie, {
           type: chartType,
           data: {
             labels: companyArray,
