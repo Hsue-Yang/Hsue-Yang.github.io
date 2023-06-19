@@ -68,9 +68,10 @@
       document.body.append(barButton);
       pieButton.style.padding = "20px";
       barButton.style.padding = "20px";
+      pieButton.innerText = "Pie";
+      barButton.innerText = "bar";
 
-      let pieChart
-
+      let pieChart;
 
       window.onload = function () {
         createArrayData();
@@ -127,7 +128,7 @@
           pieChart.clear();
         }
 
-       pieChart = new Chart(ctxPie, {
+        pieChart = new Chart(ctxPie, {
           type: chartType,
           data: {
             labels: companyArray,
