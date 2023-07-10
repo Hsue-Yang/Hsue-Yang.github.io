@@ -312,12 +312,12 @@
 
       addon4Btn.addEventListener("click", () => {
         let key = addon1DOM.value.split("-").join("");
-        console.log(key);
+        // console.log(key);
         let obj = {
           title: addon2DOM.value,
           content: addon3DOM.value,
         };
-        console.log(obj);
+        // console.log(obj);
         //找localStorage
         let dataArray = [];
         let data = getLocalStorage(key);
@@ -333,6 +333,23 @@
         addon2DOM.value = "";
         addon3DOM.value = "";
         myModalAdd.hide();
+      });
+
+      //修改LocalStorage
+      editon4Btn.addEventListener("click", () => {
+        let editKey = editon1DOM.value.split("-").join("");
+        let data = JSON.parse(localStorage.getItem(editKey));
+        data[0].title = editon2DOM.value;
+        data[0].content = editon3DOM.value;
+        localStorage.setItem(editKey, JSON.stringify(data));
+        myModalEdit.hide();
+        //數字0及自動帶日期功能未做出來，以及新增多筆行程怎麼找到
+      });
+
+      editon5Btn.addEventListener("click", () => {
+        let deleteKey = editon1DOM.value.split("-").join("");
+        localStorage.removeItem(deleteKey);
+        myModalEdit.hide();
       });
 
       window.onload = function () {
@@ -400,12 +417,22 @@
       // 取得 localstorage 資料
       function getLocalStorage(key) {
         let data = JSON.parse(localStorage.getItem(key));
-
+        console.log(data);
         return data;
       }
       // 寫入 localstorage 資料
       function setLocalStorage(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
+      }
+
+      //編輯 localstorage 資料 -> 以日期抓標題與內容，先localStorage.getItem(JSON.Parse(date))
+      //取出資料後去修改Obj的title跟content，修改完畢後localStorage.setItem(key,JSON.Stringfy(value))
+      function editData(editKey, value) {
+        // let editKey = editon1DOM.value.split("-").join("");
+        let data = JSON.parse(localStorage.getItem(editKey));
+        data[0].title = editon2DOM.value;
+        data[0].content = editon3DOM.value;
+        localStorage.setItem(editKey, JSON.stringify(value));
       }
     </script>
   </body>
