@@ -148,35 +148,123 @@ WHERE od.ProductID = 38
 ORDER BY UnitPrice DESC
 
 -- 找出有敗過銷售金額前三高個產品的前三個大客戶
-WITH TopProducts AS (
-SELECT TOP 3 ProductID, MAX(SalesAmount) AS MaxSalesAmount
-FROM(SELECT od.ProductID,
-UnitPrice*Quantity*(1-Discount) AS SalesAmount,
-ROW_NUMBER() OVER (PARTITION BY od.ProductID ORDER BY UnitPrice* Quantity * (1 - Discount) DESC) AS RowNum
-        FROM [Order Details] od
-		ORDER BY SalesAmount DESC
-    ) AS Subquery
-    WHERE RowNum = 1
-    GROUP BY ProductID
-)
-SELECT tp.ProductID, od.CustomerID
-FROM TopProducts tp
-INNER JOIN [Order Details] od ON tp.ProductID = od.ProductID
-
-SELECT * FROM Employees
+WITH CTE AS(
+SELECT
+od.ProductID,
+od.UnitPrice*od.Quantity*(1-od.Discount) AS TotalPrice,
+o.CustomerID
+FROM [Order Details] od
+INNER JOIN Orders o ON od.OrderID=o.OrderID
+),
+CTE1 AS(
+SELECT 
+ProductID,
+TotalPrice,
+CustomerID,
+ROW_NUMBER () OVER (PARTITION BY ProductID ORDER BY TotalPrice DESC) AS RowNUMBER
+FROM CTE
+GROUP BY ProductID,TotalPrice,CustomerID
+),CTE2 AS(
+SELECT TOP 3 
+ProductID,
+TotalPrice,
+CustomerID
+FROM CTE1 
+WHERE RowNUMBER=1 
+ORDER BY TotalPrice DESC
+)SELECT * FROM CTE2
 
 -- 找出有敗過銷售金額前三高個產品所屬類別的前三個大客戶
+WITH t1 AS(
+SELECT
+od.ProductID,
+od.UnitPrice*od.Quantity*(1-od.Discount) AS TotalPrice,
+o.CustomerID
+FROM [Order Details] od
+INNER JOIN Orders o ON od.OrderID=o.OrderID
+),t2 AS(
+SELECT 
+ProductID,
+TotalPrice,
+CustomerID,
+ROW_NUMBER () OVER (PARTITION BY ProductID ORDER BY TotalPrice DESC) AS RowNUMBER
+FROM t1
+GROUP BY ProductID,TotalPrice,CustomerID
+)SELECT 
+ProductID,
+TotalPrice,
+CustomerID
+FROM t2
+WHERE RowNUMBER IN (1,2,3) AND ProductID IN (38,29,59)
+ORDER BY TotalPrice DESC
 
 -- 列出消費總金額高於所有客戶平均消費總金額的客戶的名字，以及客戶的消費總金額
+WITH c1 AS(
+SELECT 
+AVG(UnitPrice*Quantity*(1-Discount)) AS AveragePrice,
+o.CustomerID
+FROM [Order Details] od
+INNER JOIN Orders o ON od.OrderID=o.OrderID
+GROUP BY o.CustomerID
+),c2 AS(
+SELECT
+AVG(AveragePrice) AS AvGP
+FROM c1
+)
+SELECT  * FROM c2,c1
+WHERE AveragePrice>AvGP
 
 -- 列出最熱銷的產品，以及被購買的總金額
+with g1 AS(
+SELECT 
+od.ProductID,
+SUM(od.UnitPrice*od.Quantity*(1-od.Discount)) AS Price,
+Count(ProductID) AS countNum
+FROM [Order Details] od
+GROUP BY ProductID
+)
+SELECT TOP 1
+ProductID,
+countNum,
+SUM(Price) AS SumPrice
+FROM g1
+GROUP BY ProductID,countNum
+ORDER BY countNum DESC
 
 -- 列出最少人買的產品
+with g1 AS(
+SELECT 
+od.ProductID,
+Count(ProductID) AS countNum
+FROM [Order Details] od
+GROUP BY ProductID
+)
+SELECT TOP 1
+ProductID,
+countNum
+FROM g1
+ORDER BY countNum 
 
 -- 列出最沒人要買的產品類別 (Categories)
+with g1 AS(
+SELECT 
+od.ProductID,
+Count(od.ProductID) AS countNum,
+p.CategoryID
+FROM [Order Details] od
+INNER JOIN Products p ON od.ProductID = p.ProductID
+GROUP BY od.ProductID,p.CategoryID
+)
+SELECT TOP 1
+ProductID,
+CategoryID,
+countNum
+FROM g1
+ORDER BY countNum 
 
 -- 列出跟銷售最好的供應商買最多金額的客戶與購買金額 (含購買其它供應商的產品)
-
+SELECT * FROM Suppliers
+SELECT * FROM Products
 -- 列出跟銷售最好的供應商買最多金額的客戶與購買金額 (不含購買其它供應商的產品)
 
 -- 列出那些產品沒有人買過
