@@ -10,18 +10,6 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <style>
-      /* #list1 .form-control {
-        border-color: transparent;
-      }
-      #list1 .form-control:focus {
-        border-color: transparent;
-        box-shadow: none;
-      }
-      #list1 .select-input.form-control[readonly]:not([disabled]) {
-        background-color: #fbfbfb;
-      } */
-    </style>
   </head>
   <body>
     <section class="vh-100">
@@ -247,7 +235,7 @@
                     </button>
                   </div>
                   <hr class="my-4" />
-                </ul> 
+                </ul>
                 <div
                   class="modal fade"
                   id="exampleModal${index}"
@@ -306,12 +294,11 @@
       }
 
       function editButtonFN(index) {
-        alert(index);
         const editBtn = document.querySelector(".editvaluebtn");
         const ulDom = document.querySelector(".uldom");
         const modalInput = document.querySelector(".modalinput");
         const pValue = document.querySelector(".pValue");
-        modalInput.value = pValue.textContent.trim();
+        // pValue.textContent.trim()=modalInput.value;
         editBtn.setAttribute("data-bs-dismiss", "modal");
         editBtn.addEventListener("click", function () {
           pValue.textContent = modalInput.value;

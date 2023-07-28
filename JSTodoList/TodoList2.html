@@ -188,8 +188,8 @@
         if (myList == null) {
           setLocalStorage("todoList", myList);
         } else {
-          myList.forEach((element) => {
-            console.log(element.Todo);
+          myList.forEach((element, index) => {
+            console.log(index);
             let ListDom = ` <ul
                   class="list-group list-group-horizontal rounded-0 bg-transparent uldom border-bottom border-Secondary pb-3" data-key = ${index}
                 >
@@ -218,7 +218,7 @@
                     role="group"
                     aria-label="Basic outlined example"
                   >
-                    <button type="button" class="editButton btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                    <button type="button" class="editButton btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editButtonFN(${index})" >
                       編輯
                     </button>
                     <button type="button" class="deleteButton btn btn-outline-primary">
@@ -296,7 +296,7 @@
 
       todoContainerDom.addEventListener("click", function (event) {
         if (event.target.classList.contains("editvaluebtn")) {
-          editButtonFN(event);
+          //editButtonFN(event);
         } else if (event.target.classList.contains("deleteButton")) {
           deleteButtonFN(event);
         }
@@ -332,7 +332,8 @@
                     role="group"
                     aria-label="Basic outlined example"
                   >
-                    <button type="button" class="editButton btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                    <button type="button" class="editButton btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    onclick="editButtonFN(${index})" >
                       編輯
                     </button>
                     <button type="button" class="deleteButton btn btn-outline-primary">
@@ -402,24 +403,22 @@
           myList.push(myTodo);
           setLocalStorage("todoList", myList);
         }
-        index++;
       }
 
-      function editButtonFN(event) {
+      function editButtonFN(index) {
+        alert(index);
         const editBtn = document.querySelector(".editvaluebtn");
-        const ulDom = document.querySelectorAll(".uldom");
-        ulDom.forEach((item, indexx) => {
-          const datakey = item.getAttribute("data-key");
-          console.log(datakey);
-          const pDom = item.querySelector(".pValue");
-          console.log(pDom.innerHTML.trim());
-          const modalInput = document.querySelector(".modalinput");
-          editBtn.setAttribute("data-bs-dismiss", "modal");
-          console.log(modalInput);
-          pDom.innerText = modalInput.value.trim();
+        editBtn.addEventListener("click", function () {
           let myList = getLocalStorage("todoList");
-          myList[datakey].Todo = modalInput.value.trim();
+          console.log(myList);
+          const modalInput = document.querySelector(".modalinput");
+          console.log(modalInput.value);
+          console.log(myList[index].Todo);
+          let myTodo = { Todo: modalInput.value };
+          myList.splice(index, 1);
+          myList.push(myTodo);
           setLocalStorage("todoList", myList);
+          editBtn.setAttribute("data-bs-dismiss", "modal");
         });
       }
 
