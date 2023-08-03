@@ -263,29 +263,139 @@ FROM g1
 ORDER BY countNum 
 
 -- 列出跟銷售最好的供應商買最多金額的客戶與購買金額 (含購買其它供應商的產品)
-SELECT * FROM Suppliers
-SELECT * FROM Products
+
 -- 列出跟銷售最好的供應商買最多金額的客戶與購買金額 (不含購買其它供應商的產品)
 
 -- 列出那些產品沒有人買過
+SELECT od.OrderID,o.OrderID FROM [Order Details] od
+RIGHT JOIN Orders o ON od.OrderID = o.OrderID
+WHERE od.OrderID is NULL
 
 -- 列出沒有傳真 (Fax) 的客戶和它的消費總金額
+SELECT 
+SUM(od.UnitPrice*od.Quantity*(1-od.Discount)) AS SalesPrice,
+c.CustomerID,
+c.Fax
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID = o.CustomerID
+INNER JOIN [Order Details] od ON o.OrderID=od.OrderID
+WHERE Fax IS NULL
+GROUP BY c.CustomerID,c.Fax
 
 -- 列出每一個城市消費的產品種類數量
+SELECT 
+c.City,
+od.ProductID,
+od.Quantity,
+p.CategoryID
+FROM Customers c
+INNER JOIN Orders o ON o.CustomerID = c.CustomerID
+INNER JOIN [Order Details] od ON o.OrderID=od.OrderID
+INNER JOIN Products p ON od.ProductID=p.ProductID
 
 -- 列出目前沒有庫存的產品在過去總共被訂購的數量
+SELECT
+od.ProductID,
+p.ProductName,
+SUM(od.Quantity)AS CountNum,
+UnitsInStock
+FROM Products p
+INNER JOIN [Order Details] od ON p.ProductID = od.ProductID
+WHERE UnitsInStock = 0
+GROUP BY od.ProductID,p.ProductName,UnitsInStock
 
 -- 列出目前沒有庫存的產品在過去曾經被那些客戶訂購過
+SELECT DISTINCT
+od.ProductID,
+p.UnitsInStock,
+o.CustomerID
+FROM Products p
+INNER JOIN [Order Details] od ON p.ProductID = od.ProductID
+INNER JOIN Orders o ON od.OrderID=o.OrderID
+WHERE UnitsInStock = 0
 
 -- 列出每位員工的下屬的業績總金額
+SELECT 
+e.EmployeeID,
+SUM(od.UnitPrice*od.Quantity*(1-od.Discount))AS SalesPrice
+FROM Employees e
+INNER JOIN Orders o ON e.EmployeeID=o.EmployeeID
+INNER JOIN [Order Details] od ON o.OrderID=od.OrderID
+WHERE e.ReportsTo=5
+GROUP BY e.EmployeeID
 
 -- 列出每家貨運公司運送最多的那一種產品類別與總數量
+SELECT TOP 2
+s.ShipperID,
+o.ShipName,
+od.Quantity,
+p.CategoryID,
+c.CategoryName
+FROM Shippers s
+INNER JOIN Orders o ON s.ShipperID=o.ShipVia
+INNER JOIN [Order Details]od ON o.OrderID=od.OrderID
+INNER JOIN Products p ON p.ProductID=od.ProductID
+INNER JOIN Categories c ON p.CategoryID=c.CategoryID
+GROUP BY s.ShipperID,o.ShipName,p.CategoryID,od.Quantity,c.CategoryName
+ORDER BY od.Quantity DESC
 
--- 列出每一個客戶買最多的產品類別與金額
+-- 列出每一個客戶買最多的產品類別與金額**
+WITH CTE1 AS(
+SELECT
+SUM(od.UnitPrice*od.Quantity*(1-od.Discount))AS SalesPrice,
+ca.CategoryID,
+ca.CategoryName,
+ROW_NUMBER () OVER (PARTITION BY c.ContactName ORDER BY ca.CategoryID DESC) AS RowNUMBER
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID=o.CustomerID
+INNER JOIN [Order Details] od ON o.OrderID=od.OrderID
+INNER JOIN Products p ON od.ProductID=p.ProductID
+INNER JOIN Categories ca ON p.CategoryID=ca.CategoryID
+GROUP BY ca.CategoryID,ca.CategoryName, c.ContactName
+
+)
+SELECT
+*
+FROM　CTE1
+WHERE RowNUMBER=1
 
 -- 列出每一個客戶買最多的那一個產品與購買數量
+WITH CC AS(
+SELECT
+c.CustomerID,
+p.ProductName,
+od.Quantity,
+ROW_NUMBER () OVER (PARTITION BY c.CustomerID ORDER BY od.Quantity DESC) AS RowNUMBER
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID = o.CustomerID
+INNER JOIN [Order Details]od ON o.OrderID=od.OrderID
+INNER JOIN Products p ON od.ProductID=p.ProductID
+)
+SELECT * FROM CC
+WHERE RowNUMBER=1
 
 -- 按照城市分類，找出每一個城市最近一筆訂單的送貨時間
+WITH CTE1 AS(
+SELECT OrderID,ShippedDate,ShipCity ,
+ROW_NUMBER () OVER (PARTITION BY ShipCity ORDER BY ShippedDate DESC) AS RowNUMBER
+FROM Shippers s
+INNER JOIN Orders o ON s.ShipperID=o.ShipVia
+GROUP BY ShipCity,OrderID,ShippedDate
+)
+SELECT * FROM CTE1
+WHERE RowNUMBER =1
 
 -- 列出購買金額第五名與第十名的客戶，以及兩個客戶的金額差距
+WITH CT AS(
+SELECT
+SUM(od.UnitPrice*od.Quantity*(1-od.Discount)) AS SalesPrice,
+c.CustomerID,
+ROW_NUMBER () OVER ( ORDER BY SUM(od.UnitPrice*od.Quantity*(1-od.Discount)) DESC) AS RowNUMBER
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID = o.CustomerID
+INNER JOIN [Order Details] od ON o.OrderID = od.OrderID
+GROUP BY c.CustomerID
+)
+SELECT * FROM CT
+WHERE RowNUMBER IN (5,10)
 

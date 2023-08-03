@@ -55,6 +55,7 @@
         height: 50px;
         border-radius: 50%;
         background-color: rgba(15, 18, 199, 0.8);
+
         /* 使用 rgba() 設定顏色透明度 */
       }
     </style>
@@ -67,7 +68,7 @@
         </div>
         <div class="col-12 col-md-6 py-3">
           <div>
-            <h2>YouBike2.0臺北市公共自行車即時資訊</h2>
+            <h2>台灣休閒農業區</h2>
             <p id="updateInfo">最後更新時間: 2021/08/20 12:00:00</p>
             <p>
               <button class="btn btn-outline-dark" onclick="renew()">
@@ -95,17 +96,17 @@
 
           <div id="queryResult">
             <!-- <div class="col-12 d-flex text-center">
-                        <div class="col-3 p-1"><strong>地點</strong></div>
-                        <div class="col-3 p-1"><strong>地址</strong></div>
-                        <div class="col-2 p-1"><strong>可借車輛</strong></div>
-                        <div class="col-2 p-1"><strong>可還車輛</strong></div>
+                        <div class="col-3 p-1"><strong>名字</strong></div>
+                        <div class="col-3 p-1"><strong>電話</strong></div>
+                        <div class="col-2 p-1"><strong>地址</strong></div>
+                        <div class="col-2 p-1"><strong>介紹</strong></div>
                         <div class="col-2 p-1"><strong></strong></div>
                     </div>
                     <div class="col-12 d-flex">
-                        <div class="col-3 p-1">YouBike2.0_國北教大實小東側門</div>
-                        <div class="col-3 p-1">大安區和平東路二段96巷7號</div>
-                        <div class="col-2 p-1 text-center">3</div>
-                        <div class="col-2 p-1 text-center">13</div>
+                        <div class="col-3 p-1">黃金小鎮休閒農業區</div>
+                        <div class="col-3 p-1">(037) 237-698</div>
+                        <div class="col-2 p-1 text-center">苗栗縣公館鄉福基村6鄰154號</div>
+                        <div class="col-2 p-1 text-center">...</div>
                         <div class="col-2 p-1 text-end">
                             <button type="button" class="btn btn-outline-dark">地圖</button>
                         </div>
@@ -125,26 +126,25 @@
       let longitude = 0; //經度
       let zoom = 17; //地圖縮放比例，0~19
 
-      //YouBike JSON連結
+      //farmData JSON連結
       const url =
-        "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json";
-      let youBikeData = []; //將JSON資料放進陣列
+        "https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx?IsTransData=1&UnitId=192";
+      let farmData = []; //將JSON資料放進陣列
       let map = ""; //初始化地圖物件
       let markers = L.markerClusterGroup(); //地圖群組物件
 
       //DOM
-      const updateInfoDom = document.querySelector("#updateInfo");
-      const inputDom = document.querySelector("#input");
-      const queryBtn = document.querySelector("#query");
-      const queryResultDom = document.querySelector("#queryResult");
+      const updateInfoDom = document.querySelector("#updateInfo"); //更新時間
+      const inputDom = document.querySelector("#input"); //輸入欄
+      const queryBtn = document.querySelector("#query"); //查詢按鈕
+      const queryResultDom = document.querySelector("#queryResult"); //結果集
 
       window.onload = function () {
         try {
-          //取得使用者座標
           geoFindMe()
             .then((res) => {
               console.log(res);
-              
+
               latitude = res[0];
               longitude = res[1];
 
@@ -179,45 +179,34 @@
       function query() {
         //初始化
         queryResultDom.innerHTML = "";
-        //過濾資料
-        let filterData = youBikeData.filter((item) => {
-          //邏輯 //sna ar地址
+        let filterData = farmData.filter((item) => {
           return (
-            item.sna.includes(inputDom.value) ||
-            item.ar.includes(inputDom.value)
+            item.Name.includes(inputDom.value) ||
+            item.Address.includes(inputDom.value)
           );
         });
         console.log(filterData);
-
-        let str = `
-        <div class="col-12 d-flex text-center">
-                        <div class="col-3 p-1"><strong>地點</strong></div>
-                        <div class="col-3 p-1"><strong>地址</strong></div>
-                        <div class="col-2 p-1"><strong>可借車輛</strong></div>
-                        <div class="col-2 p-1"><strong>可還車輛</strong></div>
+        let str = `<div class="col-12 d-flex text-center">
+                        <div class="col-3 p-1"><strong>名字</strong></div>
+                        <div class="col-3 p-1"><strong>電話</strong></div>
+                        <div class="col-2 p-1"><strong>地址</strong></div>
                         <div class="col-2 p-1"><strong></strong></div>
-                    </div>
-        `;
-
+                    </div>`;
         //關鍵字查詢是否有資料，如果沒有資料，我要顯示查無資料
         if (filterData == "") {
           str += `<div class="col-12 d-flex text-center">
                         <div class="col-3 p-1"><strong>查無資料</strong></div>
                     </div>`;
         } else {
-          //Todo...有資料的話，迭代查詢結果將資料印出到畫面上
           filterData.forEach((item) => {
-            str += `
-                <div class="col-12 d-flex">
-                        <div class="col-3 p-1">${item.sna}</div>
-                        <div class="col-3 p-1">${item.ar}</div>
-                        <div class="col-2 p-1 text-center">${item.sbi}</div>
-                        <div class="col-2 p-1 text-center">${item.bemp}</div>
+            str += `<div class="col-12 d-flex">
+                        <div class="col-3 p-1">${item.Name}</div>
+                        <div class="col-3 p-1">${item.Tel}</div>
+                        <div class="col-2 p-1 text-center">${item.Address}</div>
                         <div class="col-2 p-1 text-end">
-                            <button type="button" class="btn btn-outline-dark" onclick = "goMap(${item.lat},${item.lng})">地圖</button>
+                            <button type="button" class="btn btn-outline-dark" onclick = "goMap(${item.Latitude},${item.Longitude})">地圖</button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
           });
         }
         queryResultDom.innerHTML = str;
@@ -231,7 +220,7 @@
       }
 
       function renew() {
-        //Todo... 更新YoubikeData
+        //Todo... 更新farmData
         getMapData();
         if (inputDom.value != "") {
           query();
@@ -239,18 +228,17 @@
       }
 
       function getMapData() {
-        //取得JSON資料
         fetch(url)
           .then((res) => res.json())
           .then((data) => {
-            youBikeData = data;
+            farmData = data;
             //Todo...渲染地圖
             renderMap();
             //Todo...更新日期時間
             let today = new Date();
             console.log(today);
             let year = today.getFullYear();
-            let month = today.getMonth() + 1;
+            let month = today.getMonth();
             let date = today.getDate();
             let hour = today.getHours();
             let min = today.getMinutes();
@@ -271,23 +259,9 @@
         if (markers) {
           markers.clearLayers();
         }
-        //取得每一筆YouBikeData 並 加上 marker 及 popup
-        console.log(youBikeData);
-        youBikeData.forEach((item) => {
+        //取得每一筆farmData 並 加上 marker 及 popup
+        farmData.forEach((item) => {
           //每一筆的經緯度設定到marker
-
-          //加上藍色標記
-          const greenIcon = new L.Icon({
-            iconUrl:
-              "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-            // 3.只要更改上面這一段的 green.png 成專案裡提供的顏色如：red.png，就可以更改 marker 的顏色
-            shadowUrl:
-              "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41],
-          });
           const redIcon = new L.Icon({
             iconUrl:
               "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
@@ -299,20 +273,15 @@
             shadowSize: [41, 41],
           });
           var marker;
-          if (item.sbi < 1) {
-            marker = L.marker([item.lat, item.lng], { icon: redIcon });
-          } else if (item.sbi > 10) {
-            marker = L.marker([item.lat, item.lng], { icon: greenIcon });
-          } else {
-            marker = L.marker([item.lat, item.lng]);
-          }
+
+          marker = L.marker([item.Latitude, item.Longitude], { icon: redIcon });
 
           //標記 加上Popup視窗
           marker.bindPopup(`
-          <h5>${item.sna}</h5>
-          <p>${item.ar}</p>
-          <p>可借車輛:${item.sbi}</p>
-          <p>可還車輛:${item.bemp}</p>`);
+          <h5>${item.Name}</h5>
+          <p>${item.Address}</p>
+          <p>電話:${item.Tel}</p>
+          <p>網站:${item.Photo}</p>`);
 
           markers.addLayer(marker);
         });
@@ -321,8 +290,8 @@
 
       //補足日期兩位數
       function updateInfo(data) {
-        let updateData = data < 10 ? "0" + data : data;
-        return updateData;
+        let updateDate = data < 10 ? "0" + data : data;
+        return updateDate;
       }
 
       function initMap() {
@@ -339,7 +308,6 @@
       }
 
       function geoFindMe() {
-        //return Promise
         return new Promise((resolve, reject) => {
           var output = document.getElementById("out");
 
@@ -350,7 +318,6 @@
           }
 
           function success(position) {
-            //引用上面宣告的參數
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
 
@@ -360,20 +327,8 @@
               "° <br>Longitude is " +
               longitude +
               "°</p>";
-
-            // var img = new Image();
-            // img.src =
-            //   "http://maps.googleapis.com/maps/api/staticmap?center=" +
-            //   latitude +
-            //   "," +
-            //   longitude +
-            //   "&zoom=13&size=300x300&sensor=false";
-
-            // output.appendChild(img);
-            //成功時回傳使用者的經緯度
             return resolve([latitude, longitude]);
           }
-
           function error() {
             output.innerHTML = "Unable to retrieve your location";
 
@@ -383,7 +338,6 @@
             //Todo... 接下來使用方法
             initFN();
           }
-
           output.innerHTML = "<p>Locating…</p>";
 
           navigator.geolocation.getCurrentPosition(success, error);
