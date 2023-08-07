@@ -65,6 +65,8 @@
       .download-text {
         font-size: 12px;
       }
+      .getHelp {
+      }
       .get-help::before {
         content: "";
         display: inline-block;
@@ -124,7 +126,9 @@
       .widgetarea {
         font-size: 8px;
       }
-
+      .main-court {
+        background-color: rgb(232, 236, 242);
+      }
       .courtpic {
         overflow: hidden;
         height: calc(100vh - 154.55px);
@@ -186,7 +190,31 @@
       .ticketsite {
         background-color: #fff;
       }
-
+      .main-court {
+        position: relative;
+      }
+      .getright {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        display: block;
+        height: 125px;
+      }
+      .reset {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 0;
+        border-radius: 3px;
+        background: #fff;
+      }
+      .reset svg {
+        display: inline-block;
+        width: 26px;
+        height: 22px;
+        vertical-align: bottom;
+        fill: #046ddf;
+      }
       .ava svg {
         width: 16px;
         height: 16px;
@@ -213,52 +241,10 @@
         height: 16px;
         fill: rgb(235, 235, 235);
       }
-      .accordion {
-        position: absolute;
-        right: 15px;
-        bottom: 15px;
-      }
       .accordion-body {
         font-size: 12px;
         white-space: nowrap;
         line-height: 25px;
-      }
-      .map-container {
-        background-color: rgb(232, 236, 242);
-        height: 100%;
-        position: relative;
-      }
-      .zoomer-controls {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: white;
-        border-radius: 3px;
-      }
-      .under-memo {
-        font-size: 10px;
-        position: absolute;
-        bottom: 8px;
-        left: 0px;
-        z-index: 1;
-        width: 100%;
-        text-align: center;
-        padding: 0px 8px;
-        color: rgba(38, 38, 38, 0.65);
-      }
-      .terms {
-        padding: 0px;
-        font-size: 10px;
-        color: rgba(38, 38, 38, 0.65);
-      }
-      .cookie {
-        padding: 0px;
-        font-size: 10px;
-        color: rgba(38, 38, 38, 0.65);
-      }
-      .cf {
-        width: 100%;
-        background-image: none;
       }
       @media screen and (max-width: 768px) {
         .widget-img {
@@ -408,239 +394,259 @@
       </div>
     </header>
 
-    <div class="container-fluid cf">
+    <div class="container-fluid">
       <div class="row">
-        <div class="map">
-          <div class="map-wrapper h-100 d-flex">
-            <div class="map-container">
-              <div class="zoomer">
-                <div class="pic">
-                  <img
-                    class="image"
-                    src="https://mapsapi.tmol.io/maps/geometry/image/29/95/299591?removeFilters=ISM_Shadow&avertaFonts=true&app=PRD2663_EDP_NA"
-                    alt=""
-                  />
-                </div>
-                <div class="zoomer-controls d-flex flex-column">
-                  <button class="btn reset">
-                    <i class="fa-solid fa-rotate-left"></i>
-                  </button>
-                  <button class="btn zoomin">
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                  <button class="btn zoomout">
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                </div>
-                <div class="accordion" id="accordionExample">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                        aria-expanded="true"
-                        aria-controls="collapseOne"
-                      >
-                        Legend
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseOne"
-                      class="accordion-collapse collapse show"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="accordion-body pb-0">
-                        <ul class="list-unstyled">
-                          <div class="ava d-flex align-items-center gap-2">
-                            <svg viewBox="0 0 100 100">
-                              <g><circle cx="50" cy="50" r="50"></circle></g>
-                            </svg>
-                            <li>Available</li>
-                          </div>
-                          <div class="loc d-flex align-items-center gap-2">
-                            <svg viewBox="0 0 100 100">
-                              <g>
-                                <circle cx="50" cy="50" r="50"></circle>
-                                <path
-                                  d="M68.86,36.57H63.71V28a12,12,0,0,0-12-12H48.29a12,12,0,0,0-12,12v8.57H31.14A5.15,5.15,0,0,0,26,41.71V72.57a5.15,5.15,0,0,0,5.14,5.14H68.86A5.15,5.15,0,0,0,74,72.57V41.71A5.15,5.15,0,0,0,68.86,36.57ZM39.71,28a8.58,8.58,0,0,1,8.57-8.57h3.43A8.58,8.58,0,0,1,60.29,28v8.57H39.71V28ZM50,65a7.84,7.84,0,1,1,7.84-7.84A7.84,7.84,0,0,1,50,65Z"
-                                ></path>
-                              </g>
-                            </svg>
-                            <li>Locked Offer</li>
-                          </div>
-                          <div class="acc d-flex align-items-center gap-2">
-                            <svg viewBox="0 0 100 100">
-                              <g>
-                                <circle cx="50" cy="50" r="50"></circle>
-                                <path
-                                  d="M62.34,55.7825 C65.0175,62.15 67.7475,68.495 70.455,74.855 C70.56,75.0875 70.65,75.32 70.7925,75.62 C71.0025,75.545 71.235,75.47 71.4375,75.395 C74.865,74.045 78.2925,72.71 81.72,71.36 C81.8775,71.285 82.0575,71.2475 82.215,71.2025 L82.215,71.075 C81.6225,69.695 81.03,68.3525 80.43,66.9425 C78.3075,67.7225 76.215,68.465 74.0625,69.245 C73.95,69.035 73.8675,68.8325 73.7775,68.645 C71.1225,62.5475 68.4825,56.4425 65.8575,50.33 C65.67,49.88 65.4375,49.73 64.95,49.745 C58.7925,49.7975 52.62,49.82 46.425,49.865 C46.2525,49.865 46.08,49.8575 45.8625,49.835 C45.7725,48.62 45.675,47.435 45.5775,46.1825 L59.835,46.1825 L59.835,40.775 L45.0525,40.775 C44.82,36.845 44.61,32.9825 44.385,29.09 C44.73,29.015 45.0375,28.9625 45.33,28.88 C47.925,28.19 49.68,25.775 49.5975,23.015 C49.5225,20.435 47.5575,18.1325 44.985,17.6075 C44.835,17.5775 44.6925,17.525 44.535,17.4875 L43.125,17.4875 C42.9225,17.54 42.705,17.6 42.51,17.6525 C39.105,18.4775 37.23,22.04 38.4075,25.34 C38.655,26 38.8125,26.7275 38.865,27.44 C39.345,34.01 39.81,40.58 40.275,47.15 C40.44,49.61 40.6275,52.055 40.7625,54.5 C40.8,55.0475 40.9575,55.1975 41.49,55.1825 C48.1275,55.1675 54.765,55.1825 61.3875,55.1675 C61.8975,55.16 62.145,55.295 62.34,55.7825 Z M25.335,59.39 L25.335,62.9225 C25.365,63.0725 25.425,63.23 25.4325,63.38 C26.46,72.6125 33.045,80.015 42.1275,82.0475 C42.915,82.2275 43.74,82.355 44.535,82.5125 L48.66,82.5125 C49.8525,82.2725 51.06,82.115 52.23,81.77 C58.0575,80.0975 62.505,76.61 65.4975,71.3 C65.7,70.94 65.715,70.6625 65.5425,70.2725 C64.4475,68.12 63.405,65.945 62.3475,63.7775 C62.2425,63.59 62.1525,63.425 62.0325,63.1925 C61.8525,63.965 61.71,64.6625 61.53,65.345 C59.5125,72.38 53.07,77.045 45.7875,76.7375 C38.2725,76.4 31.8,70.2275 31.2075,62.7125 C30.735,56.7125 33,51.905 37.8825,48.35 C38.04,48.23 38.2275,47.99 38.22,47.825 C38.0925,45.86 37.935,43.9025 37.7775,41.855 C37.5525,41.945 37.35,42.005 37.17,42.1025 C30.375,45.7175 26.4525,51.3425 25.4475,58.9925 C25.425,59.1275 25.365,59.24 25.335,59.39 Z"
-                                ></path>
-                              </g>
-                            </svg>
-                            <li>Accessiblity</li>
-                          </div>
-                          <div class="una d-flex align-items-center gap-2">
-                            <svg viewBox="0 0 100 100">
-                              <g><circle cx="50" cy="50" r="50"></circle></g>
-                            </svg>
-                            <li>Unavailable</li>
-                          </div>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="under-memo">
-                By continuing past this page, you agree to our
-                <a class="text-decoration-none terms" href="#">Terms of Use</a>
-                <a class="text-decoration-none cookie" href="#"
-                  >| Cookie Preferences</a
+        <div class="main-court col-lg-9 col-md-9 d-flex col-12">
+          <div class="courtpic">
+            <img
+              class="image"
+              src="https://mapsapi.tmol.io/maps/geometry/image/29/95/299591?removeFilters=ISM_Shadow&avertaFonts=true&app=PRD2663_EDP_NA"
+              alt=""
+            />
+          </div>
+          <div
+            class="getright d-flex flex-column justify-content-between align-items-end"
+          >
+            <div class="btn-group d-flex flex-column">
+              <button class="btn reset">
+                <svg
+                  class="reset"
+                  role="img"
+                  aria-hidden="true"
+                  focusable="false"
                 >
-                <span>@Ticketmaster 2023.</span>
-              </div>
+                  <use
+                    xlink:href="/edp/v1/static/ccp/img/ism/icons.svg#reset_TM"
+                  ></use>
+                </svg>
+              </button>
+              <button class="btn zoomin">
+                <button
+                  class="zoomer__control--zoomin"
+                  aria-label="Zoom In on Interactive Seat Map"
+                >
+                  <svg
+                    class="zoomin"
+                    role="img"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use
+                      xlink:href="/edp/v1/static/ccp/img/ism/icons.svg#plus"
+                    ></use>
+                  </svg>
+                </button>
+              </button>
+              <button class="btn zoomout">
+                <svg
+                  class="zoomout"
+                  role="img"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use
+                    xlink:href="/edp/v1/static/ccp/img/ism/icons.svg#minus"
+                  ></use>
+                </svg>
+              </button>
             </div>
-            <div class="col-12 col-lg-3 col-md-3 ticketsite">
-              <div class="btn-filter">
-                <div class="btn-group d-flex justify-content-evenly m-2">
-                  <div class="dropdown">
-                    <button
-                      class="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      1 Ticket
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">1 Ticket</a></li>
-                      <li><a class="dropdown-item" href="#">2 Ticket</a></li>
-                      <li><a class="dropdown-item" href="#">3 Ticket</a></li>
-                      <li><a class="dropdown-item" href="#">4 Ticket</a></li>
-                      <li><a class="dropdown-item" href="#">5 Ticket</a></li>
-                      <li><a class="dropdown-item" href="#">6 Ticket</a></li>
-                      <li><a class="dropdown-item" href="#">7 Ticket</a></li>
-                      <li><a class="dropdown-item" href="#">8 Ticket</a></li>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Legend
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body pb-0">
+                    <ul class="list-unstyled">
+                      <div class="ava d-flex align-items-center gap-2">
+                        <svg viewBox="0 0 100 100">
+                          <g><circle cx="50" cy="50" r="50"></circle></g>
+                        </svg>
+                        <li>Available</li>
+                      </div>
+                      <div class="loc d-flex align-items-center gap-2">
+                        <svg viewBox="0 0 100 100">
+                          <g>
+                            <circle cx="50" cy="50" r="50"></circle>
+                            <path
+                              d="M68.86,36.57H63.71V28a12,12,0,0,0-12-12H48.29a12,12,0,0,0-12,12v8.57H31.14A5.15,5.15,0,0,0,26,41.71V72.57a5.15,5.15,0,0,0,5.14,5.14H68.86A5.15,5.15,0,0,0,74,72.57V41.71A5.15,5.15,0,0,0,68.86,36.57ZM39.71,28a8.58,8.58,0,0,1,8.57-8.57h3.43A8.58,8.58,0,0,1,60.29,28v8.57H39.71V28ZM50,65a7.84,7.84,0,1,1,7.84-7.84A7.84,7.84,0,0,1,50,65Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <li>Locked Offer</li>
+                      </div>
+                      <div class="acc d-flex align-items-center gap-2">
+                        <svg viewBox="0 0 100 100">
+                          <g>
+                            <circle cx="50" cy="50" r="50"></circle>
+                            <path
+                              d="M62.34,55.7825 C65.0175,62.15 67.7475,68.495 70.455,74.855 C70.56,75.0875 70.65,75.32 70.7925,75.62 C71.0025,75.545 71.235,75.47 71.4375,75.395 C74.865,74.045 78.2925,72.71 81.72,71.36 C81.8775,71.285 82.0575,71.2475 82.215,71.2025 L82.215,71.075 C81.6225,69.695 81.03,68.3525 80.43,66.9425 C78.3075,67.7225 76.215,68.465 74.0625,69.245 C73.95,69.035 73.8675,68.8325 73.7775,68.645 C71.1225,62.5475 68.4825,56.4425 65.8575,50.33 C65.67,49.88 65.4375,49.73 64.95,49.745 C58.7925,49.7975 52.62,49.82 46.425,49.865 C46.2525,49.865 46.08,49.8575 45.8625,49.835 C45.7725,48.62 45.675,47.435 45.5775,46.1825 L59.835,46.1825 L59.835,40.775 L45.0525,40.775 C44.82,36.845 44.61,32.9825 44.385,29.09 C44.73,29.015 45.0375,28.9625 45.33,28.88 C47.925,28.19 49.68,25.775 49.5975,23.015 C49.5225,20.435 47.5575,18.1325 44.985,17.6075 C44.835,17.5775 44.6925,17.525 44.535,17.4875 L43.125,17.4875 C42.9225,17.54 42.705,17.6 42.51,17.6525 C39.105,18.4775 37.23,22.04 38.4075,25.34 C38.655,26 38.8125,26.7275 38.865,27.44 C39.345,34.01 39.81,40.58 40.275,47.15 C40.44,49.61 40.6275,52.055 40.7625,54.5 C40.8,55.0475 40.9575,55.1975 41.49,55.1825 C48.1275,55.1675 54.765,55.1825 61.3875,55.1675 C61.8975,55.16 62.145,55.295 62.34,55.7825 Z M25.335,59.39 L25.335,62.9225 C25.365,63.0725 25.425,63.23 25.4325,63.38 C26.46,72.6125 33.045,80.015 42.1275,82.0475 C42.915,82.2275 43.74,82.355 44.535,82.5125 L48.66,82.5125 C49.8525,82.2725 51.06,82.115 52.23,81.77 C58.0575,80.0975 62.505,76.61 65.4975,71.3 C65.7,70.94 65.715,70.6625 65.5425,70.2725 C64.4475,68.12 63.405,65.945 62.3475,63.7775 C62.2425,63.59 62.1525,63.425 62.0325,63.1925 C61.8525,63.965 61.71,64.6625 61.53,65.345 C59.5125,72.38 53.07,77.045 45.7875,76.7375 C38.2725,76.4 31.8,70.2275 31.2075,62.7125 C30.735,56.7125 33,51.905 37.8825,48.35 C38.04,48.23 38.2275,47.99 38.22,47.825 C38.0925,45.86 37.935,43.9025 37.7775,41.855 C37.5525,41.945 37.35,42.005 37.17,42.1025 C30.375,45.7175 26.4525,51.3425 25.4475,58.9925 C25.425,59.1275 25.365,59.24 25.335,59.39 Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <li>Accessiblity</li>
+                      </div>
+                      <div class="una d-flex align-items-center gap-2">
+                        <svg viewBox="0 0 100 100">
+                          <g><circle cx="50" cy="50" r="50"></circle></g>
+                        </svg>
+                        <li>Unavailable</li>
+                      </div>
                     </ul>
                   </div>
-                  <div class="twobtn-group d-flex">
-                    <div class="unlock-btn">
-                      <button
-                        type="button"
-                        class="btn btn-outline-primary unlockbtn"
-                      >
-                        <i class="fa-solid fa-lock"></i> Unlock
-                      </button>
-                    </div>
-                    <div class="filter-btn ms-2">
-                      <button
-                        type="button"
-                        class="btn btn-outline-primary filterbtn"
-                      >
-                        <img
-                          class="filterimg"
-                          src="../4781833_filter_filters_funnel_list_navigation_icon.png"
-                          alt=""
-                        />Filters
-                      </button>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div class="price-range"></div>
-              <div class="memo mt-3">
-                <div class="memo-text text-justify">
-                  An order processing fee of up to $6.00 may be added to each
-                  order. Any applicable taxes will be added at checkout.
-                </div>
-              </div>
-              <div class="lower-price d-flex justify-content-center mt-1 pb-1">
-                <a class="lowerPrice text-decoration-none" href=""
-                  >Lowest Price</a
-                >
-              </div>
-              <div class="price-detail">
-                <ul class="list-unstyled">
-                  <li class="price-delist">
-                    <div
-                      class="bcg-hover d-flex justify-content-between align-items-center m-2"
-                    >
-                      <div class="seat-num d-flex flex-column">
-                        <span class="seatNum">Sec 111, Row 19</span
-                        ><span class="seat-type">Standard Adimission</span>
-                      </div>
-                      <div class="seat-price ms-3">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
-                      </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
-                      class="bcg-hover d-flex justify-content-between align-items-center m-2"
-                    >
-                      <div class="seat-num d-flex flex-column">
-                        <span class="seatNum">Sec 111, Row 19</span
-                        ><span class="seat-type">Standard Adimission</span>
-                      </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
-                      </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
-                      class="bcg-hover d-flex justify-content-between align-items-center m-2"
-                    >
-                      <div class="seat-num d-flex flex-column">
-                        <span class="seatNum">Sec 111, Row 19</span
-                        ><span class="seat-type">Standard Adimission</span>
-                      </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
-                      </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
-                      class="bcg-hover d-flex justify-content-between align-items-center m-2"
-                    >
-                      <div class="seat-num d-flex flex-column">
-                        <span class="seatNum">Sec 111, Row 19</span
-                        ><span class="seat-type">Standard Adimission</span>
-                      </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
-                      </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
-                      class="bcg-hover d-flex justify-content-between align-items-center m-2"
-                    >
-                      <div class="seat-num d-flex flex-column">
-                        <span class="seatNum">Sec 111, Row 19</span
-                        ><span class="seat-type">Standard Adimission</span>
-                      </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
-                      </div>
-                    </div>
-                  </li>
-                </ul>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-3 col-md-3 ticketsite">
+          <div class="btn-filter">
+            <div class="btn-group d-flex justify-content-evenly m-2">
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  1 Ticket
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">1 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">2 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">3 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">4 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">5 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">6 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">7 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">8 Ticket</a></li>
+                </ul>
+              </div>
+              <div class="twobtn-group d-flex">
+                <div class="unlock-btn">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary unlockbtn"
+                  >
+                    <i class="fa-solid fa-lock"></i> Unlock
+                  </button>
+                </div>
+                <div class="filter-btn">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary filterbtn"
+                  >
+                    <img
+                      class="filterimg"
+                      src="../4781833_filter_filters_funnel_list_navigation_icon.png"
+                      alt=""
+                    />Filters
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="price-range"></div>
+          <div class="memo mt-3">
+            <div class="memo-text text-justify">
+              An order processing fee of up to $6.00 may be added to each order.
+              Any applicable taxes will be added at checkout.
+            </div>
+          </div>
+          <div class="lower-price d-flex justify-content-center mt-1 pb-1">
+            <a class="lowerPrice text-decoration-none" href="">Lowest Price</a>
+          </div>
+          <div class="price-detail">
+            <ul class="list-unstyled">
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price ms-3">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
