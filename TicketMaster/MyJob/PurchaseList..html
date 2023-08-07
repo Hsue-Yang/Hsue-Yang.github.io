@@ -136,7 +136,6 @@
         vertical-align: top;
         object-fit: contain;
         max-width: 100%;
-        max-height: 100%;
       }
       .filterimg {
         width: 15px;
@@ -187,95 +186,18 @@
       .price-delist:hover {
         background-color: #e6f0fc;
       }
-      .wrapper {
-        /* width: 400px; */
-        /* background: #fff; */
-        /* border-radius: 10px; */
-        padding: 10px 25px;
-        /* box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1); */
+      .ticketsite {
+        background-color: #fff;
       }
-      .price-input {
-        /* width: 100%; */
-        display: flex;
-        margin: 5px 0 15px;
-      }
-      .price-input .field {
-        display: flex;
-        /* width: 100%; */
-        /* height: 45px; */
-        /* align-items: center; */
-      }
-      .field input {
-        width: 100%;
-        height: 100%;
-        outline: none;
-        font-size: 19px;
-        margin-left: 12px;
-        border-radius: 5px;
-        text-align: center;
-        border: 1px solid #999;
-        -moz-appearance: textfield;
-      }
-      input[type="number"]::-webkit-outer-spin-button,
-      input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-      }
-      .price-input .separator {
-        display: flex;
-        font-size: 19px;
-        align-items: center;
-        justify-content: center;
-      }
-      .slider {
-        height: 5px;
-        position: relative;
-        background: #ddd;
-        border-radius: 5px;
-      }
-      .slider .progress {
-        height: 100%;
-        left: 25%;
-        right: 25%;
-        position: absolute;
-        border-radius: 5px;
-        background: #17a2b8;
-      }
-      .range-input {
-        position: relative;
-      }
-      .range-input input {
-        position: absolute;
-        width: 100%;
-        height: 5px;
-        top: -5px;
-        background: none;
-        pointer-events: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-      }
-      input[type="range"]::-webkit-slider-thumb {
-        height: 17px;
-        width: 17px;
-        border-radius: 50%;
-        background: #17a2b8;
-        pointer-events: auto;
-        -webkit-appearance: none;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-      }
-      input[type="range"]::-moz-range-thumb {
-        height: 17px;
-        width: 17px;
-        border: none;
-        border-radius: 50%;
-        background: #17a2b8;
-        pointer-events: auto;
-        -moz-appearance: none;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+      @media screen and (max-width: 768px) {
+        .widget-img {
+          display: none;
+        }
       }
     </style>
   </head>
   <body>
-    <header>
+    <header class="col-12">
       <nav class="navbar navbar-dark bg-primary pb-0 pt-0">
         <div class="container-fluid">
           <button
@@ -404,7 +326,7 @@
               </button>
             </div>
           </div>
-          <div class="widget-info mt-4">
+          <div class="widget-info mt-4 pb-3">
             <p class="widgetdate text-light">Sat • Aug 26 • 7:00 PM</p>
 
             <a class="widgetarea text-decoration-none text-light" href=""
@@ -415,213 +337,198 @@
       </div>
     </header>
 
-    <main class="d-flex">
-      <div class="main-court col-lg-9 d-flex col-12">
-        <div class="courtpic m-auto">
-          <img
-            class="image"
-            src="https://mapsapi.tmol.io/maps/geometry/image/29/95/299591?removeFilters=ISM_Shadow&avertaFonts=true&app=PRD2663_EDP_NA"
-            alt=""
-          />
-        </div>
-        <div
-          class="getright d-flex flex-column justify-content-between align-items-end"
-        >
-          <div class="btn-group d-flex flex-column">
-            <button class="btn">
-              <i class="fa-solid fa-arrow-rotate-left"></i>
-            </button>
-            <div class="btn-group-sm d-flex flex-column">
-              <button class="btn"><i class="fa-solid fa-plus"></i></button>
-              <button class="btn"><i class="fa-solid fa-minus"></i></button>
-            </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="main-court col-lg-9 col-md-9 d-flex col-12 flex-grow-1">
+          <div class="courtpic m-auto">
+            <img
+              class="image"
+              src="https://mapsapi.tmol.io/maps/geometry/image/29/95/299591?removeFilters=ISM_Shadow&avertaFonts=true&app=PRD2663_EDP_NA"
+              alt=""
+            />
           </div>
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
+          <div
+            class="getright d-flex flex-column justify-content-between align-items-end"
+          >
+            <div class="btn-group d-flex flex-column">
+              <button class="btn">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+              </button>
+              <div class="btn-group-sm d-flex flex-column">
+                <button class="btn"><i class="fa-solid fa-plus"></i></button>
+                <button class="btn"><i class="fa-solid fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Legend
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#accordionExample"
                 >
-                  Legend
+                  <div class="accordion-body">
+                    <ul class="list-unstyled">
+                      <li>Available</li>
+                      <li>Locked Offer</li>
+                      <li>Accessiblity</li>
+                      <li>Unavailable</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-3 col-md-3 ticketsite">
+          <div class="btn-filter">
+            <div class="btn-group d-flex justify-content-evenly m-2">
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  1 Ticket
                 </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse show"
-                data-bs-parent="#accordionExample"
-              >
-                <div class="accordion-body">
-                  <ul class="list-unstyled">
-                    <li>Available</li>
-                    <li>Locked Offer</li>
-                    <li>Accessiblity</li>
-                    <li>Unavailable</li>
-                  </ul>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">1 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">2 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">3 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">4 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">5 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">6 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">7 Ticket</a></li>
+                  <li><a class="dropdown-item" href="#">8 Ticket</a></li>
+                </ul>
+              </div>
+              <div class="twobtn-group d-flex">
+                <div class="unlock-btn">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary unlockbtn"
+                  >
+                    <i class="fa-solid fa-lock"></i> Unlock
+                  </button>
+                </div>
+                <div class="filter-btn">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary filterbtn"
+                  >
+                    <img
+                      class="filterimg"
+                      src="../4781833_filter_filters_funnel_list_navigation_icon.png"
+                      alt=""
+                    />Filters
+                  </button>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="price-range"></div>
+          <div class="memo mt-3">
+            <div class="memo-text text-justify">
+              An order processing fee of up to $6.00 may be added to each order.
+              Any applicable taxes will be added at checkout.
+            </div>
+          </div>
+          <div class="lower-price d-flex justify-content-center mt-1 pb-1">
+            <a class="lowerPrice text-decoration-none" href="">Lowest Price</a>
+          </div>
+          <div class="price-detail">
+            <ul class="list-unstyled">
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price ms-3">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="price-delist">
+                <div
+                  class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                >
+                  <div class="seat-num d-flex flex-column">
+                    <span class="seatNum">Sec 111, Row 19</span
+                    ><span class="seat-type">Standard Adimission</span>
+                  </div>
+                  <div class="seat-price">
+                    <a class="seatPrice text-decoration-none" href="#"
+                      >$78.45</a
+                    >
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-3">
-        <div class="btn-filter">
-          <div class="btn-group d-flex justify-content-evenly p-2">
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                1 Ticket
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">1 Ticket</a></li>
-                <li><a class="dropdown-item" href="#">2 Ticket</a></li>
-                <li><a class="dropdown-item" href="#">3 Ticket</a></li>
-                <li><a class="dropdown-item" href="#">4 Ticket</a></li>
-                <li><a class="dropdown-item" href="#">5 Ticket</a></li>
-                <li><a class="dropdown-item" href="#">6 Ticket</a></li>
-                <li><a class="dropdown-item" href="#">7 Ticket</a></li>
-                <li><a class="dropdown-item" href="#">8 Ticket</a></li>
-              </ul>
-            </div>
-            <div class="unlock-btn">
-              <button type="button" class="btn btn-outline-primary unlockbtn">
-                <i class="fa-solid fa-lock"></i> Unlock
-              </button>
-            </div>
-            <div class="filter-btn">
-              <button type="button" class="btn btn-outline-primary filterbtn">
-                <img
-                  class="filterimg"
-                  src="../4781833_filter_filters_funnel_list_navigation_icon.png"
-                  alt=""
-                />Filters
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="price-range">
-          <div class="d-flex">
-            <div class="wrapper">
-              <div class="price-input">
-                <div class="field">
-                  <input type="number" class="input-min" value="2500" />
-                </div>
-                <div class="separator"></div>
-                <div class="field">
-                  <input type="number" class="input-max" value="7500" />
-                </div>
-              </div>
-              <div class="slider">
-                <div class="progress"></div>
-              </div>
-              <div class="range-input">
-                <input
-                  type="range"
-                  class="range-min"
-                  min="0"
-                  max="10000"
-                  value="2500"
-                  step="100"
-                />
-                <input
-                  type="range"
-                  class="range-max"
-                  min="0"
-                  max="10000"
-                  value="7500"
-                  step="100"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="memo mt-3">
-          <div class="memo-text text-left">
-            An order processing fee of up to $6.00 may be added to each order.
-            Any applicable taxes will be added at checkout.
-          </div>
-        </div>
-        <div class="lower-price d-flex justify-content-center mt-1 pb-1">
-          <a class="lowerPrice text-decoration-none" href="">Lowest Price</a>
-        </div>
-        <div class="price-detail">
-          <ul class="list-unstyled">
-            <li class="price-delist">
-              <div
-                class="bcg-hover d-flex justify-content-between align-items-center m-2"
-              >
-                <div class="seat-num d-flex flex-column">
-                  <span class="seatNum">Sec 111, Row 19</span
-                  ><span class="seat-type">Standard Adimission</span>
-                </div>
-                <div class="seat-price">
-                  <a class="seatPrice text-decoration-none" href="#">$78.45</a>
-                </div>
-              </div>
-            </li>
-            <li class="price-delist">
-              <div
-                class="bcg-hover d-flex justify-content-between align-items-center m-2"
-              >
-                <div class="seat-num d-flex flex-column">
-                  <span class="seatNum">Sec 111, Row 19</span
-                  ><span class="seat-type">Standard Adimission</span>
-                </div>
-                <div class="seat-price">
-                  <a class="seatPrice text-decoration-none" href="#">$78.45</a>
-                </div>
-              </div>
-            </li>
-            <li class="price-delist">
-              <div
-                class="bcg-hover d-flex justify-content-between align-items-center m-2"
-              >
-                <div class="seat-num d-flex flex-column">
-                  <span class="seatNum">Sec 111, Row 19</span
-                  ><span class="seat-type">Standard Adimission</span>
-                </div>
-                <div class="seat-price">
-                  <a class="seatPrice text-decoration-none" href="#">$78.45</a>
-                </div>
-              </div>
-            </li>
-            <li class="price-delist">
-              <div
-                class="bcg-hover d-flex justify-content-between align-items-center m-2"
-              >
-                <div class="seat-num d-flex flex-column">
-                  <span class="seatNum">Sec 111, Row 19</span
-                  ><span class="seat-type">Standard Adimission</span>
-                </div>
-                <div class="seat-price">
-                  <a class="seatPrice text-decoration-none" href="#">$78.45</a>
-                </div>
-              </div>
-            </li>
-            <li class="price-delist">
-              <div
-                class="bcg-hover d-flex justify-content-between align-items-center m-2"
-              >
-                <div class="seat-num d-flex flex-column">
-                  <span class="seatNum">Sec 111, Row 19</span
-                  ><span class="seat-type">Standard Adimission</span>
-                </div>
-                <div class="seat-price">
-                  <a class="seatPrice text-decoration-none" href="#">$78.45</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </main>
+    </div>
   </body>
 </html>
