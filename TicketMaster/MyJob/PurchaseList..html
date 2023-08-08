@@ -53,6 +53,7 @@
       }
       .sign-in {
         color: white;
+        cursor: pointer;
       }
       .input-group::after {
         content: "";
@@ -125,8 +126,9 @@
         font-size: 8px;
       }
 
-      .courtpic {
+      .pic {
         overflow: hidden;
+        object-fit: contain;
         height: calc(100vh - 154.55px);
       }
       .image {
@@ -225,7 +227,7 @@
       }
       .map-container {
         background-color: rgb(232, 236, 242);
-        height: 100%;
+        height: calc(100vh - 154.55px);
         position: relative;
       }
       .zoomer-controls {
@@ -260,8 +262,15 @@
         width: 100%;
         background-image: none;
       }
+
       @media screen and (max-width: 768px) {
         .widget-img {
+          display: none;
+        }
+        .map-wrapper {
+          flex-direction: column;
+        }
+        .accordion {
           display: none;
         }
       }
@@ -411,8 +420,8 @@
     <div class="container-fluid cf">
       <div class="row">
         <div class="map">
-          <div class="map-wrapper h-100 d-flex">
-            <div class="map-container">
+          <div class="map-wrapper d-flex">
+            <div class="map-container col-12 col-md-9 col-lg-9">
               <div class="zoomer">
                 <div class="pic">
                   <img
@@ -504,10 +513,10 @@
             </div>
             <div class="col-12 col-lg-3 col-md-3 ticketsite">
               <div class="btn-filter">
-                <div class="btn-group d-flex justify-content-evenly m-2">
-                  <div class="dropdown">
+                <div class="btn-group d-flex justify-content-between m-2">
+                  <div class="dropdown col-6">
                     <button
-                      class="btn btn-secondary dropdown-toggle"
+                      class="btn btn-secondary dropdown-toggle w-75"
                       type="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
@@ -525,11 +534,13 @@
                       <li><a class="dropdown-item" href="#">8 Ticket</a></li>
                     </ul>
                   </div>
-                  <div class="twobtn-group d-flex">
+                  <div
+                    class="twobtn-group d-flex col-6 justify-content-center ms-1"
+                  >
                     <div class="unlock-btn">
                       <button
                         type="button"
-                        class="btn btn-outline-primary unlockbtn"
+                        class="btn btn-outline-primary unlockbtn d-flex align-items-center gap-1"
                       >
                         <i class="fa-solid fa-lock"></i> Unlock
                       </button>
@@ -537,7 +548,7 @@
                     <div class="filter-btn ms-2">
                       <button
                         type="button"
-                        class="btn btn-outline-primary filterbtn"
+                        class="btn btn-outline-primary filterbtn d-flex align-items-center gap-1"
                       >
                         <img
                           class="filterimg"
@@ -549,7 +560,7 @@
                   </div>
                 </div>
               </div>
-              <div class="price-range"></div>
+              <div class="price-range d-flex justify-content-between"></div>
               <div class="memo mt-3">
                 <div class="memo-text text-justify">
                   An order processing fee of up to $6.00 may be added to each
