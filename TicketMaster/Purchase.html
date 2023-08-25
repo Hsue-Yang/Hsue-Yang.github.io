@@ -17,13 +17,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <style>
       .container-fluid {
@@ -127,20 +125,7 @@
       .widgetarea {
         font-size: 8px;
       }
-      .zoomer {
-        height: calc(100vh - 154.55px);
-      }
-      .pic {
-        overflow: hidden;
-        object-fit: contain;
-        height: calc(100vh - 154.55px);
-        position: relative;
-      }
-      .pic svg {
-        position: absolute;
-        right: 18%;
-        top: -15%;
-      }
+
       .image {
         vertical-align: top;
         object-fit: contain;
@@ -197,11 +182,12 @@
         font-size: 10px;
         font-weight: bolder;
       }
-      .price-delist:hover {
+      .bcg-hover:hover {
         background-color: #e6f0fc;
       }
       .ticketsite {
         background-color: #fff;
+        overflow: hidden;
       }
 
       .ava svg {
@@ -470,6 +456,89 @@
       .modal-lg {
         margin-top: 10vh;
       }
+      /* -------------------- */
+      /* offcanvas-confirm */
+      .picker__icon-plus {
+        width: 18px;
+        height: 18px;
+        fill: #fff;
+      }
+      .card-seat .pic {
+        width: 100%;
+      }
+      .card-seat .pic img {
+        width: 100%;
+        object-fit: contain;
+        vertical-align: top;
+      }
+      .seat-text {
+        font-size: 10px;
+        color: #727272;
+      }
+      .tickets {
+        border-top: 1px solid #ebebeb;
+      }
+      .ticket-price {
+        font-size: 15px;
+        font-weight: bolder;
+      }
+      .price-span {
+        font-weight: 500;
+        font-size: 12px;
+      }
+      .price-a {
+        color: black;
+      }
+      .ticket-number {
+        font-weight: bolder;
+      }
+      .btn-minus {
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        background-color: #727272;
+        color: white;
+      }
+      .btn-plus {
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        background-color: #cce2f9;
+        color: white;
+      }
+      .buy-text {
+        font-size: 12px;
+        font-weight: bolder;
+      }
+      .buynow-btn {
+        background-color: white;
+        border: 0;
+        outline: 1px solid #ebebeb;
+      }
+      .subtotal {
+        border-top: 1px solid #ebebeb;
+      }
+      .sub-text,
+      .sub-price {
+        font-size: 13px;
+        font-weight: bolder;
+      }
+      .subtotal-ticket {
+        font-size: 12px;
+      }
+      .next-btn {
+        border: none;
+        color: white;
+        background-color: rgb(27, 171, 30);
+        font-size: 13px;
+        padding: 8px;
+        font-weight: bolder;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      /* --------------------------------- */
       @media screen and (max-width: 768px) {
         .widget-img {
           display: none;
@@ -484,7 +553,9 @@
     </style>
   </head>
   <body>
+    <!-- header -->
     <header class="col-12">
+      <!-- navbar -->
       <nav class="navbar navbar-dark bg-primary pb-0 pt-0">
         <div class="container-fluid">
           <button
@@ -607,7 +678,7 @@
           </div>
         </div>
       </nav>
-
+      <!-- 滑出視窗 -->
       <div
         class="offcanvas offcanvas-start"
         tabindex="-1"
@@ -687,6 +758,7 @@
         </div>
       </div>
 
+      <!-- 第二個橫幅 -->
       <div class="widget d-flex">
         <div class="widget-pic p-2">
           <img
@@ -806,14 +878,17 @@
       </div>
     </header>
 
+    <!-- 主區塊 -->
     <div class="container-fluid cf">
       <div class="row">
         <div class="map">
           <div class="map-wrapper d-flex">
+            <!-- 場館主圖區 -->
             <div class="map-container col-12 col-md-9 col-lg-9">
               <div class="zoomer">
-                <div class="pic">
+                <div class="pic w-75">
                   <svg
+                    style="margin: auto"
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -3069,7 +3144,8 @@ jqcxjqbeyEOujxNPn+uj7khP+fWaJ/w95o9pq/7mbIb6cdTc469oejmMJ368Tknb/uZz0Onbp//Z"
                 <span>@Ticketmaster 2023.</span>
               </div>
             </div>
-            <div class="col-12 col-lg-3 col-md-3 ticketsite">
+            <!-- 右邊票卷過濾 -->
+            <div class="col-12 col-lg-3 col-md-3 ticketsite position-relative">
               <div class="btn-filter">
                 <div class="btn-group d-flex mt-2 w-100 ps-2 pe-2">
                   <div class="dropdown-div col-6">
@@ -3113,23 +3189,8 @@ jqcxjqbeyEOujxNPn+uj7khP+fWaJ/w95o9pq/7mbIb6cdTc469oejmMJ368Tknb/uZz0Onbp//Z"
                     <input type="number" value="75" class="min-input" />
                   </div>
 
-                  <div class="slider">
-                    <div class="progress"></div>
-                  </div>
-                  <div class="range-input d-flex">
-                    <input
-                      type="range"
-                      min="0"
-                      max="10000"
-                      value="75"
-                      class="min-range"
-                    /><input
-                      type="range"
-                      min="0"
-                      max="10000"
-                      value="300"
-                      class="max-range"
-                    />
+                  <div class="container d-flex w-100 flex-column p-3">
+                    <input id="price" type="range" min="75" max="300" />
                   </div>
 
                   <div class="field">
@@ -3150,8 +3211,13 @@ jqcxjqbeyEOujxNPn+uj7khP+fWaJ/w95o9pq/7mbIb6cdTc469oejmMJ368Tknb/uZz0Onbp//Z"
               </div>
               <div class="price-detail">
                 <ul class="list-unstyled">
-                  <li class="price-delist">
-                    <div
+                  <a
+                    href="#"
+                    class="price-delist text-decoration-none"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling"
+                    aria-controls="offcanvasScrolling"
+                    ><div
                       class="bcg-hover d-flex justify-content-between align-items-center m-2"
                     >
                       <div class="seat-num d-flex flex-column">
@@ -3159,72 +3225,219 @@ jqcxjqbeyEOujxNPn+uj7khP+fWaJ/w95o9pq/7mbIb6cdTc469oejmMJ368Tknb/uZz0Onbp//Z"
                         ><span class="seat-type">Standard Adimission</span>
                       </div>
                       <div class="seat-price ms-3">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
+                        <p class="seatPrice text-decoration-none m-auto">
+                          $78.45
+                        </p>
                       </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    href="#"
+                    class="price-delist text-decoration-none"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling"
+                    aria-controls="offcanvasScrolling"
+                    ><div
                       class="bcg-hover d-flex justify-content-between align-items-center m-2"
                     >
                       <div class="seat-num d-flex flex-column">
                         <span class="seatNum">Sec 111, Row 19</span
                         ><span class="seat-type">Standard Adimission</span>
                       </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
+                      <div class="seat-price ms-3">
+                        <p class="seatPrice text-decoration-none m-auto">
+                          $78.45
+                        </p>
                       </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    href="#"
+                    class="price-delist text-decoration-none"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling"
+                    aria-controls="offcanvasScrolling"
+                    ><div
                       class="bcg-hover d-flex justify-content-between align-items-center m-2"
                     >
                       <div class="seat-num d-flex flex-column">
                         <span class="seatNum">Sec 111, Row 19</span
                         ><span class="seat-type">Standard Adimission</span>
                       </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
+                      <div class="seat-price ms-3">
+                        <p class="seatPrice text-decoration-none m-auto">
+                          $78.45
+                        </p>
                       </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    href="#"
+                    class="price-delist text-decoration-none"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling"
+                    aria-controls="offcanvasScrolling"
+                    ><div
                       class="bcg-hover d-flex justify-content-between align-items-center m-2"
                     >
                       <div class="seat-num d-flex flex-column">
                         <span class="seatNum">Sec 111, Row 19</span
                         ><span class="seat-type">Standard Adimission</span>
                       </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
-                        >
+                      <div class="seat-price ms-3">
+                        <p class="seatPrice text-decoration-none m-auto">
+                          $78.45
+                        </p>
                       </div>
-                    </div>
-                  </li>
-                  <li class="price-delist">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    href="#"
+                    class="price-delist text-decoration-none"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling"
+                    aria-controls="offcanvasScrolling"
+                    ><div
                       class="bcg-hover d-flex justify-content-between align-items-center m-2"
                     >
                       <div class="seat-num d-flex flex-column">
                         <span class="seatNum">Sec 111, Row 19</span
                         ><span class="seat-type">Standard Adimission</span>
                       </div>
-                      <div class="seat-price">
-                        <a class="seatPrice text-decoration-none" href="#"
-                          >$78.45</a
+                      <div class="seat-price ms-3">
+                        <p class="seatPrice text-decoration-none m-auto">
+                          $78.45
+                        </p>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="#"
+                    class="price-delist text-decoration-none"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling"
+                    aria-controls="offcanvasScrolling"
+                    ><div
+                      class="bcg-hover d-flex justify-content-between align-items-center m-2"
+                    >
+                      <div class="seat-num d-flex flex-column">
+                        <span class="seatNum">Sec 111, Row 19</span
+                        ><span class="seat-type">Standard Adimission</span>
+                      </div>
+                      <div class="seat-price ms-3">
+                        <p class="seatPrice text-decoration-none m-auto">
+                          $78.45
+                        </p>
+                      </div>
+                    </div></a
+                  >
+                  <div
+                    class="offcanvas offcanvas-end position-absolute"
+                    data-bs-scroll="true"
+                    data-bs-backdrop="false"
+                    tabindex="-1"
+                    id="offcanvasScrolling"
+                    aria-labelledby="offcanvasScrollingLabel"
+                  >
+                    <div class="offcanvas-header p-0">
+                      <div class="container-confirmed d-flex flex-column w-100">
+                        <div
+                          class="confirmed-header d-flex bg-body-secondary p-2"
                         >
+                          <div
+                            class="seat-num col-11 d-flex justify-content-center"
+                          >
+                            <strong>Sec 44 RESERVE, Row V</strong>
+                          </div>
+                          <div
+                            class="close-btn col-1 d-flex justify-content-end"
+                          >
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="offcanvas"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </li>
+                    <div
+                      class="offcanvas-body d-flex justify-content-between flex-column"
+                    >
+                      <div class="tikets-detail">
+                        <div class="card-seat d-flex align-items-center">
+                          <div class="pic">
+                            <img
+                              src="https://mapsapi.tmol.io/maps/geometry/3/event/00005E99D47A5C4C/image?systemId=HOST&sectionNames=314&placeId=GMYTIORSGA5DCNI&sectionLevel=true&w=280&pw=30&app=PRD2663_EDP_NA&pt=circle"
+                              alt="arena"
+                            />
+                          </div>
+                          <div class="seat-text">
+                            Concourse 3 <br />Sec 314, Row 20
+                          </div>
+                        </div>
+                        <div class="seat-memo ps-2 mb-2">
+                          <i class="fa-solid fa-circle-info p-2"></i>You'll get
+                          2 tickets together in this row.
+                        </div>
+                        <div
+                          class="tickets d-flex ps-2 pt-2 justify-content-between"
+                        >
+                          <div class="ticket-price col-8">
+                            Resale Tickets <br />
+                            <span class="price-span"
+                              >$236.00
+                              <a class="text-decoration-none price-a" href="#"
+                                >+ Fees</a
+                              ></span
+                            >
+                          </div>
+                          <div class="ticket-number">
+                            <button class="btn-minus">-</button>
+                            2
+                            <button class="btn-plus">+</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="container-buy">
+                        <div class="buynow m-3">
+                          <button
+                            class="buynow-btn d-flex w-100 justify-content-between"
+                          >
+                            <div class="card-text-buynow d-flex ps-1">
+                              <div class="buynow-pic">
+                                <img
+                                  src="https://ccp.tmconst.com/tm/6ff0af4d/static/ccp/flexpay/flexpay-icon.svg"
+                                  alt="card"
+                                />
+                              </div>
+                              <div class="buy-text ps-2 m-auto">
+                                Buy Now, Pay Later at Checkout
+                              </div>
+                            </div>
+                            <div class="buynow-icon d-flex pt-2">
+                              <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                          </button>
+                        </div>
+                        <div class="confirmed-footer">
+                          <div class="subtotal">
+                            <div
+                              class="subtotal-price d-flex justify-content-between"
+                            >
+                              <div class="sub-text mt-2 ps-3">Subtotal</div>
+                              <div class="sub-price mt-2 pe-3">$119.00</div>
+                            </div>
+                            <div class="subtotal-ticket ps-3">2 tickets</div>
+                          </div>
+                          <div class="next mx-3">
+                            <button class="w-100 next-btn">Next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </ul>
               </div>
             </div>
