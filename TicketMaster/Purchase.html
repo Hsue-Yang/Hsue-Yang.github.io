@@ -289,13 +289,6 @@
       .max-input::-webkit-inner-spin-button {
         display: none;
       }
-      .slider {
-        height: 5px;
-        position: relative;
-        background-color: #ddd;
-        border-radius: 5px;
-        width: 100%;
-      }
       .progress {
         position: absolute;
         height: 100%;
@@ -539,6 +532,97 @@
         margin-top: 10px;
       }
       /* --------------------------------- */
+      /* Rounded Button */
+      .switchs {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 500px;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switchs input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .sliders {
+        position: absolute;
+        cursor: pointer;
+        /* top: 0; */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      .sliders:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: rgb(198, 198, 198);
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+      input:checked + .sliders {
+        background-color: #2196f3 !important;
+      }
+
+      input:focus + .sliders {
+        box-shadow: 0 0 1px #2196f3 !important;
+      }
+
+      input:checked + .sliders:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      /* .slider.round {
+        border-radius: 34px;
+      } */
+
+      .sliders.round:before {
+        border-radius: 50%;
+      }
+      /* Rounded Button */
+      .typeOptions .accordion {
+        position: static;
+      }
+      .typeOptions .accordion-item {
+        border: none;
+      }
+      .applybtn,
+      .resetbtn {
+        color: #026cdf;
+        border-radius: 5px;
+      }
+      .applybtn:hover {
+        background-color: #026cdf;
+        color: white;
+      }
+      .resetbtn:hover {
+        background-color: #026cdf;
+        color: white;
+      }
+      .ticketType {
+        color: #727272;
+      }
+      .selectAll:hover {
+        color: #026cdf;
+      }
+      .clearAll:hover {
+        color: #026cdf;
+      }
+
       @media screen and (max-width: 768px) {
         .widget-img {
           display: none;
@@ -546,7 +630,7 @@
         .map-wrapper {
           flex-direction: column;
         }
-        .accordion {
+        .map-container .accordion {
           display: none;
         }
       }
@@ -3175,10 +3259,215 @@ jqcxjqbeyEOujxNPn+uj7khP+fWaJ/w95o9pq/7mbIb6cdTc469oejmMJ368Tknb/uZz0Onbp//Z"
                       <button
                         type="button"
                         class="btn filterbtn d-flex align-items-center gap-1 w-100 justify-content-center"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasFilter"
+                        aria-controls="offcanvasFilter"
                       >
                         <i class="fa-solid fa-arrow-down-wide-short"></i>
                         Filters
                       </button>
+                      <div
+                        class="offcanvas offcanvas-end position-absolute w-100 "
+                        data-bs-scroll="true"
+                        data-bs-backdrop="false"
+                        tabindex="-1"
+                        id="offcanvasFilter"
+                        aria-labelledby="offcanvasFilterLabel"
+                      >
+                        <div class="offcanvas-header d-flex border-bottom">
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="offcanvas"
+                            aria-label="Close"
+                          ></button>
+                          <h5
+                            class="offcanvas-title m-auto fw-bolder"
+                            id="offcanvasFilterLabel"
+                          >
+                            Filters
+                          </h5>
+                        </div>
+                        <div
+                          class="offcanvas-body d-flex flex-column justify-content-between"
+                        >
+                          <div class="canvasUpper">
+                            <div class="dropdown-div col-12">
+                              <div
+                                class="dropdown d-flex justify-content-center"
+                              >
+                                <button
+                                  class="btn btn-secondary dropdown-toggle w-100"
+                                  type="button"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"
+                                >
+                                  1 Ticket
+                                </button>
+                                <ul class="dropdown-menu w-100">
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >1 Ticket</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >2 Ticket</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >3 Ticket</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >4 Ticket</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >5 Ticket</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >6 Ticket</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >7 Ticket</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#"
+                                      >8 Ticket</a
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="price-range mt-3">
+                              <div class="price-input mb-2">
+                                <div class="field">
+                                  <input
+                                    type="number"
+                                    value="75"
+                                    class="min-input"
+                                  />
+                                </div>
+                                <div
+                                  class="container d-flex w-100 flex-column p-3"
+                                >
+                                  <input
+                                    id="price"
+                                    type="range"
+                                    min="75"
+                                    max="300"
+                                  />
+                                </div>
+                                <div class="field">
+                                  <input
+                                    type="number"
+                                    value="300"
+                                    class="max-input"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="ticketType d-flex justify-content-between"
+                            >
+                              <p class="m-auto ms-0 ml-0 ticketType">
+                                Ticket Type
+                              </p>
+                              <div class="btn-group">
+                                <button class="selectAll btn">Select All</button
+                                ><span class="m-auto">|</span
+                                ><button class="clearAll btn">Clear All</button>
+                              </div>
+                            </div>
+                            <div class="typeOptions d-flex">
+                              <div class="col-10 mt-4">
+                                <div class="accordion">
+                                  <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                      <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#OptionsOne"
+                                        aria-expanded="true"
+                                        aria-controls="OptionsOne"
+                                      >
+                                        <input
+                                          type="checkbox"
+                                          class="mx-2 ms-0"
+                                        />
+                                        CITI Premium VIP Ticket
+                                      </button>
+                                    </h2>
+                                    <div
+                                      id="OptionsOne"
+                                      class="accordion-collapse collapse show"
+                                      data-bs-parent="#accordionExample"
+                                    >
+                                      <div class="accordion-body">...</div>
+                                    </div>
+                                  </div>
+                                  <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                      <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#OptionsTwo"
+                                        aria-expanded="false"
+                                        aria-controls="OptionsTwo"
+                                      >
+                                        <input
+                                          type="checkbox"
+                                          class="mx-2 ms-0"
+                                        />
+                                        Global VIP Ticket
+                                      </button>
+                                    </h2>
+                                    <div
+                                      id="OptionsTwo"
+                                      class="accordion-collapse collapse"
+                                      data-bs-parent="#accordionExample"
+                                    >
+                                      <div class="accordion-body">...</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="accessiblebutton d-flex justify-content-between mt-4 m-auto"
+                            >
+                              <p>Show Accessible Tickets</p>
+                              <label class="switchs d-flex">
+                                <input
+                                  class="roundBtn"
+                                  type="checkbox"
+                                  checked
+                                />
+                                <span class="sliders round"></span>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="canvasDown d-flex justify-content-end">
+                            <div class="btn-group">
+                              <button class="btn resetbtn">Reset</button
+                              ><button class="btn applybtn">
+                                Apply Filters
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3332,7 +3621,7 @@ jqcxjqbeyEOujxNPn+uj7khP+fWaJ/w95o9pq/7mbIb6cdTc469oejmMJ368Tknb/uZz0Onbp//Z"
                     </div></a
                   >
                   <div
-                    class="offcanvas offcanvas-end position-absolute"
+                    class="offcanvas offcanvas-end position-absolute w-100"
                     data-bs-scroll="true"
                     data-bs-backdrop="false"
                     tabindex="-1"
