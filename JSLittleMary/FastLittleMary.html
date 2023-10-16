@@ -31,13 +31,26 @@
         transition: 0.3s;
       }
       [box-id] {
-        border: solid 5px rgb(21, 21, 21);
-        box-shadow: 0 0 20px rgb(125, 125, 125);
+        border: solid 5px rgb(75, 66, 72);
+        border-radius: 50px;
+        box-shadow: 0 0 20px rgb(104, 162, 248);
         transition: 0s;
+        margin: 10px;
       }
       #msg {
         font-size: 36px;
         text-align: center;
+        color: white;
+      }
+      .btn {
+        border-radius: 500px;
+        padding: 5px 20px;
+      }
+      .container {
+        background-image: url("https://res.cloudinary.com/dwwsvrsar/image/upload/v1697431233/1588580573183_t305v1.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
       }
     </style>
     <!-- Google Tag Manager -->
@@ -94,7 +107,7 @@
       <div class="row justify-content-between">
         <div box-id="30" class="col-1"></div>
         <div class="col-10 d-flex justify-content-center align-items-center">
-          <button class="border-0 btn btn-dark">Run</button>
+          <button class="border-0 btn btn-light">Run</button>
         </div>
         <div box-id="15" class="col-1"></div>
       </div>
@@ -103,6 +116,7 @@
         <div class="col-10">
           <div id="msg"></div>
         </div>
+
         <div box-id="16" class="col-1"></div>
       </div>
       <div class="row justify-content-between">
@@ -170,7 +184,7 @@
               let icon = document.createElement("i");
               icon.setAttribute("class", Brickdata.icon);
               icon.style.color = Brickdata.color;
-              // console.log(icon);
+              console.log(icon);
               x.appendChild(icon);
               // console.log(x);
             });
@@ -190,7 +204,9 @@
           if (steps < Math.floor(allSteps / 3)) speed += 7; //當剩下1/3時，減速度
         } else {
           let msgBox = document.getElementById("msg");
-          msgBox.innerText = `${data[currentIndex].target}`;
+          msgBox.innerHTML = `<i class="${data[currentIndex].icon}"></i><br>
+          <p>今天選擇${data[currentIndex].target}吧</p>
+          `;
         }
       }
     </script>
