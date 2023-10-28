@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>前進國際面試題</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .box {
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box mt-5" id="app">
+        <div class="appliance m-3">
+          申請人:
+          <input type="text" placeholder="楊學人" :disabled="isCheck" />
+        </div>
+        <div class="age m-3">
+          年齡:
+          <input
+            type="number"
+            placeholder="28"
+            min="18"
+            max="38"
+            :disabled="isCheck"
+          />
+        </div>
+        <div class="section d-flex m-3">
+          部門:
+          <div>
+            <select v-model="value">
+              <option
+                :value="option.sec"
+                v-for="option in options"
+                :key="option.sec"
+                :disabled="isCheck"
+              >
+                {{ option.sec }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="gender m-3">
+          性別:
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio1"
+              value="option1"
+              checked
+              :disabled="isCheck"
+            />
+            <label class="form-check-label" for="inlineRadio1">男</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio2"
+              value="option2"
+              :disabled="isCheck"
+            />
+            <label class="form-check-label" for="inlineRadio2">女</label>
+          </div>
+        </div>
+        <div class="m-3">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+              @click="toggleCheck()"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              鎖定
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            isCheck: false,
+            value: "資訊部",
+            options: [{ sec: "人事部" }, { sec: "會計部" }, { sec: "資訊部" }],
+          };
+        },
+        methods: {
+          toggleCheck() {
+            this.isCheck = !this.isCheck;
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

@@ -170,5 +170,76 @@
         }
       }
     </script>
+    <script>
+      theaterDom.addEventListener("click", function (event) {
+        var target = event.target;
+        var targetCoordinate = null;
+
+        if (!isMovieTheater) {
+          allPaths.forEach((path) => {
+            //拿到場館所有座標
+            const dAttribute = path.getAttribute("d");
+            coordinate.push(dAttribute);
+            //對應target的座標跟coordinate比對
+            //console.log(target.getAttribute('d'))
+            const filter = coordinate.filter(function (d) {
+              return d == target.getAttribute("d");
+            });
+            var matchingElement = document.querySelector(
+              'path[d="' + filter[0] + '"]'
+            );
+            console.log(matchingElement);
+            if (matchingElement) {
+              if (matchingElement.style.fill === "red") {
+                matchingElement.style.fill = ""; // 清除颜色
+              } else {
+                matchingElement.style.fill = "red"; // 切换颜色
+              }
+            }
+          });
+        } else {
+          //Movie只要ellipse
+          allEllipse.forEach((ellipse) => {
+            const transform = ellipse.getAttribute("transform");
+            coordinate.push(transform);
+          });
+
+          theaterElements.forEach((element) => {
+            if (element === target) {
+              if (element.style.fill === "red") {
+                element.style.fill = ""; // 清除颜色
+              } else {
+                element.style.fill = "red"; // 切换颜色
+              }
+            }
+          });
+        }
+
+        //上面是點擊可以換顏色
+        //下面是渲染座位資料
+        var blockClass = target.getAttribute("class");
+        var matchingSection = sectionLA.SeatSectionsViewModel.filter(function (
+          section
+        ) {
+          return section.SectionName === blockClass;
+        });
+
+        if (matchingSection) {
+          var filterSeats = [];
+
+          matchingSection.forEach(function (item) {
+            var matchingSectionId = item.ID;
+
+            var filterSeat = seatLA.SeatNumsViewModel.filter(function (seat) {
+              return seat.SeatSectionID === matchingSectionId;
+            });
+
+            filterSeats = filterSeats.concat(filterSeat);
+          });
+        }
+
+        displayFilteredSeats(filterSeats, matchingSection);
+      });
+    </script>
   </body>
 </html>
