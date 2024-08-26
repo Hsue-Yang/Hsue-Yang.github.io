@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .picker__icon-plus {
+        width: 18px;
+        height: 18px;
+        fill: #fff;
+      }
+      .card-seat .pic {
+        width: 100%;
+      }
+      .card-seat .pic img {
+        width: 100%;
+        object-fit: contain;
+        vertical-align: top;
+      }
+      .seat-text {
+        font-size: 10px;
+        color: #727272;
+      }
+      .tickets {
+        border-top: 1px solid #ebebeb;
+      }
+      .ticket-price {
+        font-size: 15px;
+        font-weight: bolder;
+      }
+      .price-span {
+        font-weight: 500;
+        font-size: 12px;
+      }
+      .price-a {
+        color: black;
+      }
+      .ticket-number {
+        font-weight: bolder;
+      }
+      .btn-minus {
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        background-color: #727272;
+        color: white;
+      }
+      .btn-plus {
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        background-color: #cce2f9;
+        color: white;
+      }
+      .buy-text {
+        font-size: 12px;
+        font-weight: bolder;
+      }
+      .buynow-btn {
+        background-color: white;
+        border: 0;
+        outline: 1px solid #ebebeb;
+      }
+      .subtotal {
+        border-top: 1px solid #ebebeb;
+      }
+      .sub-text,
+      .sub-price {
+        font-size: 13px;
+        font-weight: bolder;
+      }
+      .subtotal-ticket {
+        font-size: 12px;
+      }
+      .next-btn {
+        border: none;
+        color: white;
+        background-color: rgb(27, 171, 30);
+        font-size: 13px;
+        padding: 8px;
+        font-weight: bolder;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button
+      class="btn btn-primary"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasScrolling"
+      aria-controls="offcanvasScrolling"
+    >
+      Enable body scrolling
+    </button>
+
+    <a
+      href="#"
+      class="price-delist text-decoration-none"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasScrolling"
+      aria-controls="offcanvasScrolling"
+      ><div
+        class="bcg-hover d-flex justify-content-between align-items-center m-2"
+      >
+        <div class="seat-num d-flex flex-column">
+          <span class="seatNum">Sec 111, Row 19</span
+          ><span class="seat-type">Standard Adimission</span>
+        </div>
+        <div class="seat-price ms-3">
+          <p class="seatPrice text-decoration-none m-auto">$78.45</p>
+        </div>
+      </div></a
+    >
+
+    <div
+      class="offcanvas offcanvas-end"
+      data-bs-scroll="true"
+      data-bs-backdrop="false"
+      tabindex="-1"
+      id="offcanvasScrolling"
+      aria-labelledby="offcanvasScrollingLabel"
+    >
+      <div class="offcanvas-header p-0">
+        <div class="container-confirmed d-flex flex-column w-100">
+          <div class="confirmed-header d-flex bg-body-secondary p-2">
+            <div class="seat-num col-11 d-flex justify-content-center">
+              <strong>Sec 44 RESERVE, Row V</strong>
+            </div>
+            <div class="close-btn col-1 d-flex justify-content-end">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offcanvas-body d-flex justify-content-between flex-column">
+        <div class="tikets-detail">
+          <div class="card-seat d-flex align-items-center">
+            <div class="pic">
+              <img
+                src="https://mapsapi.tmol.io/maps/geometry/3/event/00005E99D47A5C4C/image?systemId=HOST&sectionNames=314&placeId=GMYTIORSGA5DCNI&sectionLevel=true&w=280&pw=30&app=PRD2663_EDP_NA&pt=circle"
+                alt="arena"
+              />
+            </div>
+            <div class="seat-text">Concourse 3 <br />Sec 314, Row 20</div>
+          </div>
+          <div class="seat-memo ps-2 mb-2">
+            <i class="fa-solid fa-circle-info p-2"></i>You'll get 2 tickets
+            together in this row.
+          </div>
+          <div class="tickets d-flex ps-2 pt-2 justify-content-between">
+            <div class="ticket-price col-8">
+              Resale Tickets <br />
+              <span class="price-span"
+                >$236.00
+                <a class="text-decoration-none price-a" href="#"
+                  >+ Fees</a
+                ></span
+              >
+            </div>
+            <div class="ticket-number">
+              <button class="btn-minus">-</button>
+              2
+              <button class="btn-plus">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="container-buy">
+          <div class="buynow m-3">
+            <button class="buynow-btn d-flex w-100 justify-content-between">
+              <div class="card-text-buynow d-flex ps-1">
+                <div class="buynow-pic">
+                  <img
+                    src="https://ccp.tmconst.com/tm/6ff0af4d/static/ccp/flexpay/flexpay-icon.svg"
+                    alt="card"
+                  />
+                </div>
+                <div class="buy-text ps-2 m-auto">
+                  Buy Now, Pay Later at Checkout
+                </div>
+              </div>
+              <div class="buynow-icon d-flex pt-2">
+                <i class="fa-solid fa-circle-info"></i>
+              </div>
+            </button>
+          </div>
+          <div class="confirmed-footer">
+            <div class="subtotal">
+              <div class="subtotal-price d-flex justify-content-between">
+                <div class="sub-text mt-2 ps-3">Subtotal</div>
+                <div class="sub-price mt-2 pe-3">$119.00</div>
+              </div>
+              <div class="subtotal-ticket ps-3">2 tickets</div>
+            </div>
+            <div class="next mx-3">
+              <button class="w-100 next-btn">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-3">
+      <div class="container-confirmed d-flex flex-column">
+        <div class="confirmed-header d-flex bg-body-secondary p-2">
+          <div class="seat-num col-11 d-flex justify-content-center">
+            <strong>Sec 44 RESERVE, Row V</strong>
+          </div>
+          <div class="close-btn col-1 d-flex justify-content-end">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+        </div>
+        <div class="tikets-detail">
+          <div class="card-seat d-flex align-items-center">
+            <div class="pic">
+              <img
+                src="https://mapsapi.tmol.io/maps/geometry/3/event/00005E99D47A5C4C/image?systemId=HOST&sectionNames=314&placeId=GMYTIORSGA5DCNI&sectionLevel=true&w=280&pw=30&app=PRD2663_EDP_NA&pt=circle"
+                alt="arena"
+              />
+            </div>
+            <div class="seat-text">Concourse 3 <br />Sec 314, Row 20</div>
+          </div>
+          <div class="seat-memo ps-2 mb-2">
+            <i class="fa-solid fa-circle-info p-2"></i>You'll get 2 tickets
+            together in this row.
+          </div>
+          <div class="tickets d-flex ps-2 pt-2 justify-content-between">
+            <div class="ticket-price col-8">
+              Resale Tickets <br />
+              <span class="price-span"
+                >$236.00
+                <a class="text-decoration-none price-a" href="#"
+                  >+ Fees</a
+                ></span
+              >
+            </div>
+            <div class="ticket-number">
+              <button class="btn-minus">-</button>
+              2
+              <button class="btn-plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-buy">
+        <div class="buynow m-3">
+          <button class="buynow-btn d-flex w-100 justify-content-between">
+            <div class="card-text-buynow d-flex ps-1">
+              <div class="buynow-pic">
+                <img
+                  src="https://ccp.tmconst.com/tm/6ff0af4d/static/ccp/flexpay/flexpay-icon.svg"
+                  alt="card"
+                />
+              </div>
+              <div class="buy-text ps-2 m-auto">
+                Buy Now, Pay Later at Checkout
+              </div>
+            </div>
+            <div class="buynow-icon d-flex pt-2">
+              <i class="fa-solid fa-circle-info"></i>
+            </div>
+          </button>
+        </div>
+        <div class="confirmed-footer">
+          <div class="subtotal">
+            <div class="subtotal-price d-flex justify-content-between">
+              <div class="sub-text mt-2 ps-3">Subtotal</div>
+              <div class="sub-price mt-2 pe-3">$119.00</div>
+            </div>
+            <div class="subtotal-ticket ps-3">2 tickets</div>
+          </div>
+          <div class="next mx-3">
+            <button class="w-100 next-btn">Next</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- ////////////////////// -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

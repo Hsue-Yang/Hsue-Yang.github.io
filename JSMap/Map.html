@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Leaflet CDN -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <!-- Leaflet Plugin -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+    />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .container > .row {
+        height: 100vh;
+      }
+
+      #map {
+        height: 50vh;
+      }
+
+      @media (min-width: 768px) {
+        /* 在md及以上的尺寸地圖改為視窗高度 */
+        #map {
+          height: 100vh;
+        }
+      }
+      div > span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: #ffffff;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgba(15, 18, 199, 0.8);
+        /* 使用 rgba() 設定顏色透明度 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 py-3" id="content">
+          <div id="map" class=""></div>
+        </div>
+        <div class="col-12 col-md-6 py-3">
+          <div>
+            <h2>YouBike2.0臺北市公共自行車即時資訊</h2>
+            <p id="updateInfo">最後更新時間: 2021/08/20 12:00:00</p>
+            <p>
+              <button class="btn btn-outline-dark" onclick="renew()">
+                更新地圖資料
+              </button>
+            </p>
+            <!-- <p><button onclick="geoFindMe()">Show my location</button></p> -->
+            <div id="out"></div>
+            <div class="input-group mb-3">
+              <div class="input-group-text" id="basic-addon2">請輸入關鍵字</div>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                aria-label=""
+                aria-describedby="basic-addon2"
+                id="input"
+              />
+              <button type="button" class="btn btn-outline-dark" id="query">
+                查詢
+              </button>
+            </div>
+          </div>
+
+          <div id="queryResult">
+            <!-- <div class="col-12 d-flex text-center">
+                        <div class="col-3 p-1"><strong>地點</strong></div>
+                        <div class="col-3 p-1"><strong>地址</strong></div>
+                        <div class="col-2 p-1"><strong>可借車輛</strong></div>
+                        <div class="col-2 p-1"><strong>可還車輛</strong></div>
+                        <div class="col-2 p-1"><strong></strong></div>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <div class="col-3 p-1">YouBike2.0_國北教大實小東側門</div>
+                        <div class="col-3 p-1">大安區和平東路二段96巷7號</div>
+                        <div class="col-2 p-1 text-center">3</div>
+                        <div class="col-2 p-1 text-center">13</div>
+                        <div class="col-2 p-1 text-end">
+                            <button type="button" class="btn btn-outline-dark">地圖</button>
+                        </div>
+                    </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      //todo...
+      let latitude = 0; //緯度
+      let longitude = 0; //經度
+      let zoom = 17; //地圖縮放比例，0~19
+
+      //YouBike JSON連結
+      const url =
+        "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json";
+      let youBikeData = []; //將JSON資料放進陣列
+      let map = ""; //初始化地圖物件
+      let markers = L.markerClusterGroup(); //地圖群組物件
+
+      //DOM
+      const updateInfoDom = document.querySelector("#updateInfo");
+      const inputDom = document.querySelector("#input");
+      const queryBtn = document.querySelector("#query");
+      const queryResultDom = document.querySelector("#queryResult");
+
+      window.onload = function () {
+        try {
+          //取得使用者座標
+          geoFindMe()
+            .then((res) => {
+              console.log(res);
+              
+              latitude = res[0];
+              longitude = res[1];
+
+              initFN();
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        } catch (e) {
+          console.log(e);
+        }
+      };
+
+      function initFN() {
+        //初始地圖
+        initMap();
+        //取得 YouBike資料
+        getMapData();
+        // 渲染地圖
+      }
+      queryBtn.addEventListener("click", function () {
+        if (inputDom == "") {
+          alert("請輸入關鍵字");
+          return;
+        } else {
+          //Todo... 要去撈出關鍵字相關的資料
+          query();
+        }
+      });
+
+      //查詢關鍵字邏輯 以及 顯示查詢結果
+      function query() {
+        //初始化
+        queryResultDom.innerHTML = "";
+        //過濾資料
+        let filterData = youBikeData.filter((item) => {
+          //邏輯 //sna ar地址
+          return (
+            item.sna.includes(inputDom.value) ||
+            item.ar.includes(inputDom.value)
+          );
+        });
+        console.log(filterData);
+
+        let str = `
+        <div class="col-12 d-flex text-center">
+                        <div class="col-3 p-1"><strong>地點</strong></div>
+                        <div class="col-3 p-1"><strong>地址</strong></div>
+                        <div class="col-2 p-1"><strong>可借車輛</strong></div>
+                        <div class="col-2 p-1"><strong>可還車輛</strong></div>
+                        <div class="col-2 p-1"><strong></strong></div>
+                    </div>
+        `;
+
+        //關鍵字查詢是否有資料，如果沒有資料，我要顯示查無資料
+        if (filterData == "") {
+          str += `<div class="col-12 d-flex text-center">
+                        <div class="col-3 p-1"><strong>查無資料</strong></div>
+                    </div>`;
+        } else {
+          //Todo...有資料的話，迭代查詢結果將資料印出到畫面上
+          filterData.forEach((item) => {
+            str += `
+                <div class="col-12 d-flex">
+                        <div class="col-3 p-1">${item.sna}</div>
+                        <div class="col-3 p-1">${item.ar}</div>
+                        <div class="col-2 p-1 text-center">${item.sbi}</div>
+                        <div class="col-2 p-1 text-center">${item.bemp}</div>
+                        <div class="col-2 p-1 text-end">
+                            <button type="button" class="btn btn-outline-dark" onclick = "goMap(${item.lat},${item.lng})">地圖</button>
+                        </div>
+                    </div>
+                `;
+          });
+        }
+        queryResultDom.innerHTML = str;
+      }
+
+      function goMap(lat, lng) {
+        //重新再更新一次Data
+        getMapData();
+        //設定地圖位置
+        map.setView([lat, lng], 19);
+      }
+
+      function renew() {
+        //Todo... 更新YoubikeData
+        getMapData();
+        if (inputDom.value != "") {
+          query();
+        }
+      }
+
+      function getMapData() {
+        //取得JSON資料
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            youBikeData = data;
+            //Todo...渲染地圖
+            renderMap();
+            //Todo...更新日期時間
+            let today = new Date();
+            console.log(today);
+            let year = today.getFullYear();
+            let month = today.getMonth() + 1;
+            let date = today.getDate();
+            let hour = today.getHours();
+            let min = today.getMinutes();
+            //補足日期兩位數
+            month = updateInfo(month);
+            date = updateInfo(date);
+            hour = updateInfo(hour);
+            min = updateInfo(min);
+
+            console.log(`${year}/${month}/${date},${hour}:${min}`);
+            updateInfoDom.textContent = `最後更新時間${year}/${month}/${date} ${hour}:${min}`;
+          });
+      }
+
+      function markerColor() {}
+
+      function renderMap() {
+        if (markers) {
+          markers.clearLayers();
+        }
+        //取得每一筆YouBikeData 並 加上 marker 及 popup
+        console.log(youBikeData);
+        youBikeData.forEach((item) => {
+          //每一筆的經緯度設定到marker
+
+          //加上藍色標記
+          const greenIcon = new L.Icon({
+            iconUrl:
+              "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+            // 3.只要更改上面這一段的 green.png 成專案裡提供的顏色如：red.png，就可以更改 marker 的顏色
+            shadowUrl:
+              "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+          });
+          const redIcon = new L.Icon({
+            iconUrl:
+              "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+            shadowUrl:
+              "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+          });
+          var marker;
+          if (item.sbi < 1) {
+            marker = L.marker([item.lat, item.lng], { icon: redIcon });
+          } else if (item.sbi > 10) {
+            marker = L.marker([item.lat, item.lng], { icon: greenIcon });
+          } else {
+            marker = L.marker([item.lat, item.lng]);
+          }
+
+          //標記 加上Popup視窗
+          marker.bindPopup(`
+          <h5>${item.sna}</h5>
+          <p>${item.ar}</p>
+          <p>可借車輛:${item.sbi}</p>
+          <p>可還車輛:${item.bemp}</p>`);
+
+          markers.addLayer(marker);
+        });
+        map.addLayer(markers);
+      }
+
+      //補足日期兩位數
+      function updateInfo(data) {
+        let updateData = data < 10 ? "0" + data : data;
+        return updateData;
+      }
+
+      function initMap() {
+        //地圖初始化 容器 //顯示地圖的畫面位置
+        //把var拿掉，前面有初始化過了
+        map = L.map("map").setView([latitude, longitude], zoom);
+
+        //地圖使用的圖層
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+      }
+
+      function geoFindMe() {
+        //return Promise
+        return new Promise((resolve, reject) => {
+          var output = document.getElementById("out");
+
+          if (!navigator.geolocation) {
+            output.innerHTML =
+              "<p>Geolocation is not supported by your browser</p>";
+            return;
+          }
+
+          function success(position) {
+            //引用上面宣告的參數
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+
+            output.innerHTML =
+              "<p>Latitude is " +
+              latitude +
+              "° <br>Longitude is " +
+              longitude +
+              "°</p>";
+
+            // var img = new Image();
+            // img.src =
+            //   "http://maps.googleapis.com/maps/api/staticmap?center=" +
+            //   latitude +
+            //   "," +
+            //   longitude +
+            //   "&zoom=13&size=300x300&sensor=false";
+
+            // output.appendChild(img);
+            //成功時回傳使用者的經緯度
+            return resolve([latitude, longitude]);
+          }
+
+          function error() {
+            output.innerHTML = "Unable to retrieve your location";
+
+            //失敗時指定預設值給經緯度
+            latitude = 25.04694235550326;
+            longitude = 121.57047711143338;
+            //Todo... 接下來使用方法
+            initFN();
+          }
+
+          output.innerHTML = "<p>Locating…</p>";
+
+          navigator.geolocation.getCurrentPosition(success, error);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div
+              class="card"
+              id="list1"
+              style="border-radius: 0.75rem; background-color: #eff1f2"
+            >
+              <div class="maincard card-body py-4 px-4 px-md-5">
+                <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+                  <i class="fas fa-check-square me-1"></i>
+                  <u>Todo-List</u>
+                </p>
+
+                <div class="pb-2">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-row align-items-center">
+                        <!-- input欄位 -->
+                        <input
+                          type="text"
+                          class="addinput form-control form-control-lg"
+                          id="exampleFormControlInput1"
+                          placeholder="Add new..."
+                        />
+                        <div>
+                          <!-- 新增button -->
+                          <button
+                            type="button"
+                            class="btn btn-primary addButton"
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="my-4" />
+                <!-- 代辦事項清單 -->
+                <ul
+                  class="rounded-0 bg-transparent border-bottom border-Secondary pb-3 uldom"
+                ></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      //DOM
+      const addBtn = document.querySelector(".addButton");
+      const inputDom = document.querySelector(".addinput");
+      const ulDom = document.querySelector(".uldom");
+      let data = getLocalStorage("todoList");
+
+      //宣告
+
+      window.onload = function () {
+        addLiDom();
+      };
+
+      //監聽事件
+      addBtn.addEventListener("click", function () {
+        let todo = { todo: inputDom.value };
+        data.push(todo);
+        setLocalStorage("todoList", data);
+        addLiDom(inputDom.value);
+        inputDom.value = "";
+      });
+
+      ulDom.addEventListener("click", function (event) {
+        const target = event.target;
+        if (target.type === "checkbox") {
+          const liDom = target.closest(".lidom");
+          const pDom = liDom.querySelector(".pdom");
+          const todoText = pDom.innerText.trim();
+
+          // 在 data 中尋找對應的項目並更新 checked 屬性
+          data.forEach((item) => {
+            if (item.todo === todoText) {
+              item.checked = target.checked; //自行新增checked欄位
+              setLocalStorage("todoList", data); // 將整個 data 陣列儲存到 localStorage
+            }
+          });
+        } else if (event.target.classList.contains("editbtn")) {
+          editBtnFN(event);
+        } else if (event.target.classList.contains("deletebtn")) {
+          deleteBtnFN(event);
+        }
+      });
+
+      //function區
+
+      function editBtnFN(event) {
+        //console.log(event.target);
+        let i = event.target.getAttribute("data-index");
+        //console.log(i);
+        const editBtn = event.target;
+        const liDom = editBtn.closest(".lidom");
+        const pDom = liDom.querySelector(".pdom");
+        const modalInput = document.querySelector(".modalinput");
+        const modalEditBtn = document.querySelector(".modalEdit");
+        modalEditBtn.setAttribute("data-index", i);
+        modalInput.value = pDom.innerText.trim();
+        //modalEditBtn.addEventListener("click", function () {});
+        //console.log(modalEditBtn);
+      }
+
+      function modalSave() {
+        //alert(111);
+        const editBtn = event.target;
+        const liDom = editBtn.closest(".lidom");
+        const pDom = liDom.querySelector(".pdom");
+        const modalInput = document.querySelector(".modalinput");
+        const modalEditBtn = document.querySelector(".modalEdit");
+        console.log("//////");
+
+        let i = modalEditBtn.getAttribute("data-index");
+
+        console.log(i);
+        console.log(modalInput.value);
+
+        data[i].todo = modalInput.value;
+        setLocalStorage("todoList", data);
+        console.log(data[i].todo);
+        addLiDom();
+        //pDom.innerText = modalInput.value;
+        // data.forEach((item) => {
+        //   if (item.todo === pDom.innerText.trim()) {
+        //     item.todo = modalInput.value;
+        //     setLocalStorage("todoList", data);
+        //     pDom.innerText = modalInput.value;
+        //   }
+        // });
+      }
+
+      function deleteBtnFN(event) {
+        const deleteBtn = event.target;
+        //找到最近父層擁有的lidom元素
+        const liDom = deleteBtn.closest(".lidom");
+        const pDom = liDom.querySelector(".pdom");
+
+        console.log("//////");
+
+        let i = deleteBtn.getAttribute("data-index");
+        console.log(i);
+        data.splice(i, 1);
+        setLocalStorage("todoList", data);
+
+        addLiDom();
+        // data.forEach((item, index) => {
+        //   if (item.todo === pDom.innerText.trim()) {
+        //     data.splice(index, 1);
+        //     setLocalStorage("todoList", data);
+        //   }
+        // });
+      }
+
+      function addLiDom(value) {
+        ulDom.innerHTML = "";
+        console.log(data);
+        if (data == null || data == "") {
+          return;
+        }
+
+        data.forEach((item, index) => {
+          let i = index;
+          console.log(index);
+          const checkBoxDom = document.createElement("input");
+          checkBoxDom.setAttribute("Type", "checkbox");
+          checkBoxDom.setAttribute("class", "checkbox");
+          const liDom = document.createElement("li");
+          liDom.setAttribute("class", "lidom");
+          const pDom = document.createElement("p");
+          pDom.setAttribute("class", "pdom");
+          pDom.innerText = item.todo;
+          const divBtn = document.createElement("div");
+          divBtn.setAttribute("class", "btn-group");
+          const editBtn = document.createElement("button");
+          editBtn.setAttribute("class", "btn btn-primary editbtn");
+          editBtn.setAttribute("data-bs-target", "#exampleModal");
+          editBtn.setAttribute("data-bs-toggle", "modal");
+          editBtn.setAttribute("data-index", index);
+
+          editBtn.textContent = "編輯";
+          const deleteBtn = document.createElement("button");
+          deleteBtn.setAttribute("class", "btn btn-primary deletebtn");
+          deleteBtn.textContent = "刪除";
+          deleteBtn.setAttribute("data-index", index);
+          let modal = `<div
+                      class="modal fade"
+                      id="exampleModal"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              編輯行程:
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"
+                                  >行程 :</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control modalinput"
+                                  id="recipient-name"
+                                  value=""
+                                />
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              關閉
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-primary modalEdit"
+                              data-bs-dismiss="modal"
+                              data-index = ${i}
+                              onclick = "modalSave()"
+                            >
+                              編輯
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>`;
+          divBtn.append(editBtn, deleteBtn);
+          liDom.innerHTML += modal;
+          liDom.append(pDom, checkBoxDom, divBtn);
+          ulDom.append(liDom);
+        });
+      }
+
+      function setLocalStorage(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+      }
+      function getLocalStorage(key) {
+        let data = JSON.parse(localStorage.getItem(key));
+        return data ? data : [];
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let anwser = Math.floor(Math.random() * 100);
+      let n1 = 0;
+      let n2 = 100;
+      while (true) {
+        let guessNum = Number(prompt(`終極密碼 ${n1}~${n2}`));
+
+        if (guessNum < n1 || guessNum > n2) {
+          alert("請輸入範圍內的數字");
+          continue;
+        } else if (guessNum > anwser) {
+          n2 = guessNum;
+        } else if (guessNum < anwser) {
+          n1 = guessNum;
+        } else {
+          alert("恭喜您猜對了!");
+          break;
+        }
+      }
+    </script>
+  </body>
+</html>

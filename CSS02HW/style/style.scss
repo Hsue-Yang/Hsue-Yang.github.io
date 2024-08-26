@@ -1,0 +1,211 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+body * {
+  line-height: calc(5px + 2ex + 5px);
+  color: #052855;
+}
+header {
+  div.headerone {
+    background-color: rgb(255, 253, 253);
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    div.logo {
+      //   margin-right: 30px;
+    }
+    nav {
+      margin: 0rem 30px;
+      ul {
+        display: flex;
+        li {
+          list-style-type: none;
+          margin: 15px;
+          a {
+            text-decoration: none;
+            color: black;
+          }
+          a:hover {
+            border-bottom: 2px solid rgb(69, 118, 223);
+            transition: all 0.5s ease;
+          }
+        }
+      }
+    }
+  }
+  div.a {
+    a {
+      text-decoration: none;
+      color: white;
+      background-color: rgb(25, 65, 225);
+      border-radius: 8px;
+      padding: 12px 40px;
+      font-weight: bold;
+    }
+    a:hover {
+      background-color: darkblue;
+    }
+  }
+  div.headertwo {
+    background-color: rgb(241, 239, 239);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 0rem;
+    margin-top: 70px;
+    h1 {
+      font-size: 200%;
+      font-weight: bold;
+    }
+    p {
+      padding-top: 2rem;
+    }
+  }
+}
+
+main {
+  div.cardtext {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: left;
+    box-sizing: border-box;
+    flex-direction: row;
+    div.card {
+      width: fit-content;
+      img {
+        width: 425px;
+        height: 400px;
+      }
+    }
+    div.part {
+      width: 510px;
+      box-sizing: border-box;
+      margin: 20px 30px;
+      div.text {
+        h2 {
+          font-weight: bold;
+        }
+        p {
+          font-size: 16px;
+          padding: 20px 0px;
+        }
+      }
+      nav {
+        ul {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          height: 100px;
+
+          li {
+            list-style-type: none;
+            padding: 3px;
+          }
+          li::before {
+            content: "";
+            display: inline-block;
+            margin-right: 10px;
+            width: 5px;
+            height: 5px;
+            background-color: #052855;
+            border-radius: 50%;
+          }
+        }
+      }
+      div.arrow {
+        display: flex;
+        margin-top: 40px;
+        a {
+          display: inline-block;
+          border-bottom: 2px solid rgb(16, 96, 188);
+          color: rgb(16, 96, 188);
+          text-decoration: none;
+        }
+        img {
+          width: 25px;
+          height: 25px;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+        img:hover {
+          margin-left: 15px;
+          transition: all 0.5s ease;
+        }
+      }
+    }
+  }
+}
+.cardtext:nth-child(odd) {
+  display: flex;
+  flex-direction: row-reverse;
+}
+footer {
+  background-color: rgba(240, 248, 255, 0.799);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  div.title {
+    margin: 50px 0px;
+    font-size: 20px;
+  }
+  div.cardlist {
+    display: flex;
+    flex-wrap: wrap;
+    width: 900px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+    div.list {
+      width: 260px;
+      margin: 20px;
+      height: 200px;
+      h3 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 14px;
+        padding-top: 15px;
+      }
+      img {
+        margin: 20px 0px;
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+}
+div.fix {
+  a {
+    z-index: 5;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  a:hover {
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "Id": 1,
+    "SeatNum": "A001",
+    "VenueId": 1,
+    "Price": 300,
+    "Status": "Standard",
+    "IsOrdered": 0
+  },
+  {},
+
+  {}
+]

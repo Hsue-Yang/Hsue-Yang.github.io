@@ -1,0 +1,179 @@
+[
+  {
+    "id": "1",
+    "color": "white",
+    "icon": "fa-solid fa-burger",
+    "target": "burger"
+  },
+  {
+    "id": "2",
+    "color": "white",
+    "icon": "fa-solid fa-pizza-slice",
+    "target": "pizza"
+  },
+  {
+    "id": "3",
+    "color": "white",
+    "icon": "fa-solid fa-stroopwafel",
+    "target": "wafel"
+  },
+  {
+    "id": "4",
+    "color": "white",
+    "icon": "fa-solid fa-bowl-rice",
+    "target": "rice"
+  },
+  {
+    "id": "5",
+    "color": "white",
+    "icon": "fa-solid fa-cookie-bite",
+    "target": "cookie"
+  },
+  {
+    "id": "6",
+    "color": "white",
+    "icon": "fa-solid fa-candy-cane",
+    "target": "candy"
+  },
+  {
+    "id": "7",
+    "color": "white",
+    "icon": "fa-solid fa-lemon",
+    "target": "lemon"
+  },
+  { "id": "8", "color": "white", "icon": "fa-solid fa-fish", "target": "fish" },
+  {
+    "id": "9",
+    "color": "white",
+    "icon": "fa-solid fa-bacon",
+    "target": "bacon"
+  },
+  {
+    "id": "10",
+    "color": "white",
+    "icon": "fa-solid fa-glass-water",
+    "target": "water"
+  },
+  {
+    "id": "11",
+    "color": "white",
+    "icon": "fa-solid fa-cake-candles",
+    "target": "cake"
+  },
+  {
+    "id": "12",
+    "color": "white",
+    "icon": "fa-solid fa-hotdog",
+    "target": "hotdog"
+  },
+  {
+    "id": "13",
+    "color": "white",
+    "icon": "fa-solid fa-cheese",
+    "target": "cheese"
+  },
+  { "id": "14", "color": "white", "icon": "fa-solid fa-egg", "target": "egg" },
+  {
+    "id": "15",
+    "color": "white",
+    "icon": "fa-solid fa-carrot",
+    "target": "carrot"
+  },
+  {
+    "id": "16",
+    "color": "white",
+    "icon": "fa-solid fa-burger",
+    "target": "burger"
+  },
+  {
+    "id": "17",
+    "color": "white",
+    "icon": "fa-solid fa-pizza-slice",
+    "target": "pizza"
+  },
+  {
+    "id": "18",
+    "color": "white",
+    "icon": "fa-solid fa-stroopwafel",
+    "target": "wafel"
+  },
+  {
+    "id": "19",
+    "color": "white",
+    "icon": "fa-solid fa-bowl-rice",
+    "target": "rice"
+  },
+  {
+    "id": "20",
+    "color": "white",
+    "icon": "fa-solid fa-cookie-bite",
+    "target": "cookie"
+  },
+  {
+    "id": "21",
+    "color": "white",
+    "icon": "fa-solid fa-candy-cane",
+    "target": "candy"
+  },
+  {
+    "id": "22",
+    "color": "white",
+    "icon": "fa-solid fa-lemon",
+    "target": "lemon"
+  },
+  {
+    "id": "23",
+    "color": "white",
+    "icon": "fa-solid fa-fish",
+    "target": "fish"
+  },
+  {
+    "id": "24",
+    "color": "white",
+    "icon": "fa-solid fa-bacon",
+    "target": "bacon"
+  },
+  {
+    "id": "25",
+    "color": "white",
+    "icon": "fa-solid fa-glass-water",
+    "target": "water"
+  },
+  {
+    "id": "26",
+    "color": "white",
+    "icon": "fa-solid fa-cake-candles",
+    "target": "cake"
+  },
+  {
+    "id": "27",
+    "color": "white",
+    "icon": "fa-solid fa-hotdog",
+    "target": "hotdog"
+  },
+  {
+    "id": "28",
+    "color": "white",
+    "icon": "fa-solid fa-cheese",
+    "target": "cheese"
+  },
+  { "id": "29", "color": "white", "icon": "fa-solid fa-egg", "target": "egg" },
+  {
+    "id": "30",
+    "color": "white",
+    "icon": "fa-solid fa-carrot",
+    "target": "carrot"
+  },
+  {
+    "id": "31",
+    "color": "white",
+    "icon": "fa-solid fa-fish",
+    "target": "fish"
+  },
+  {
+    "id": "32",
+    "color": "white",
+    "icon": "fa-solid fa-bacon",
+    "target": "bacon"
+  }
+]

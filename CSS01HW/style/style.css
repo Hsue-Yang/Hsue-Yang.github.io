@@ -1,0 +1,277 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+div.headerone {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  background-color: #3c3c3c;
+  margin: auto;
+  height: 60px;
+}
+div.headerone div.tel {
+  display: flex;
+  margin: 1rem;
+}
+div.headerone div.tel img {
+  width: 30px;
+  height: 30px;
+}
+div.headerone div.tel h3 {
+  color: white;
+}
+div.headerone div.icon {
+  margin: 1rem;
+}
+div.headerone div.icon a {
+  padding: 0.1rem;
+}
+div.headerone div.icon a img {
+  background-color: white;
+  border-radius: 50%;
+  color: white;
+  width: 25px;
+  height: 25px;
+}
+
+div.headertwo {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  height: 120px;
+  justify-content: center;
+}
+div.headertwo div.logo {
+  display: flex;
+  align-items: center;
+}
+div.headertwo div.logo h2 {
+  padding-left: 0.5rem;
+  font-size: 3rem;
+}
+div.headertwo div.logo a img {
+  width: 60px;
+  height: 60px;
+}
+div.headertwo div.nav {
+  display: flex;
+  align-items: center;
+  margin: 50px;
+}
+div.headertwo div.nav nav ul {
+  display: flex;
+}
+div.headertwo div.nav nav ul li {
+  display: flex;
+}
+div.headertwo div.nav nav ul li a {
+  text-decoration: none;
+  color: black;
+  margin: 2rem;
+}
+div.headertwo div.donate {
+  display: flex;
+  align-items: center;
+}
+div.headertwo div.donate a {
+  text-decoration: none;
+  color: orange;
+  border: 2px solid orange;
+  padding: 1rem 1.5rem;
+  font-size: 0.7rem;
+}
+div.headertwo div.donate a:hover {
+  background-color: #6ecceb;
+  color: white;
+  border: none;
+}
+
+main section.cat {
+  min-height: 65vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../pic/asset\ 4.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+main section.cat div.help {
+  width: 60%;
+  text-align: left;
+}
+main section.cat div.help h2 {
+  font-size: 2.5rem;
+  padding-bottom: 0.3rem;
+}
+main section.cat div.help h2 span {
+  font-size: 4.5rem;
+}
+main section.cat div.help p {
+  font-size: 1.2rem;
+}
+main section.cat div.help a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  border: 2px solid orange;
+  margin-top: 2rem;
+  padding: 1.3rem 3.5rem;
+  font-size: 0.7rem;
+  background-color: orange;
+}
+main section.cat div.help a:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+main section.woman {
+  min-height: 70vh;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+main section.woman div.woman {
+  margin-top: 1rem;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+main section.woman div.woman img {
+  width: 510px;
+  height: 510px;
+}
+main section.woman div.part {
+  margin-left: 2rem;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+main section.woman div.part h2 {
+  font-size: 2.5rem;
+}
+main section.woman div.part h3 {
+  font-size: 1.5rem;
+  padding: 1.5rem 0rem;
+  color: #6ecceb;
+}
+main section.woman div.part p {
+  font-size: 1rem;
+  color: gray;
+}
+main section.woman div.part a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  border: 2px solid orange;
+  margin-top: 2rem;
+  padding: 1.3rem 3.5rem;
+  font-size: 0.7rem;
+  background-color: orange;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+main section.woman div.part a:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  background-color: rgb(228, 227, 227);
+}
+footer div.title {
+  margin: 50px;
+}
+footer div.title h1 {
+  font-size: 3rem;
+}
+footer div.title h2 {
+  padding: 1rem 0rem;
+  font-size: 1.7rem;
+  color: #6ecceb;
+}
+footer div.cardlist {
+  width: 75%;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+footer div.cardlist div.volunteer {
+  width: 25%;
+  margin: 10px;
+  margin-right: 30px;
+  background-image: url(../pic/asset\ 5.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 350px;
+  text-align: center;
+}
+footer div.cardlist div.volunteer p {
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+footer div.cardlist div.volunteer:hover {
+  opacity: 0.7;
+}
+footer div.cardlist div.adopt {
+  width: 25%;
+  margin: 10px;
+  margin-right: 30px;
+  background-image: url(../pic/asset\ 6.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 350px;
+  text-align: center;
+}
+footer div.cardlist div.adopt p {
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+footer div.cardlist div.adopt:hover {
+  opacity: 0.7;
+}
+footer div.cardlist div.sponsor {
+  margin: 10px;
+  width: 25%;
+  background-image: url(../pic/asset\ 7.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 350px;
+  text-align: center;
+}
+footer div.cardlist div.sponsor p {
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+footer div.cardlist div.sponsor:hover {
+  opacity: 0.7;
+}
+
+div.fix a {
+  z-index: 5;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+}
+div.fix a img {
+  width: 70px;
+  height: 70px;
+}/*# sourceMappingURL=style.css.map */

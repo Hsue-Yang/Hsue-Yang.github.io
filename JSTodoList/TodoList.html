@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div
+              class="card"
+              id="list1"
+              style="border-radius: 0.75rem; background-color: #eff1f2"
+            >
+              <div class="maincard card-body py-4 px-4 px-md-5">
+                <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+                  <i class="fas fa-check-square me-1"></i>
+                  <u>Todo-List</u>
+                </p>
+
+                <div class="pb-2">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-row align-items-center">
+                        <!-- input欄位 -->
+                        <input
+                          type="text"
+                          class="addinput form-control form-control-lg"
+                          id="exampleFormControlInput1"
+                          placeholder="Add new..."
+                        />
+                        <div>
+                          <!-- 新增button -->
+                          <button
+                            type="button"
+                            class="btn btn-primary addButton"
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="my-4" />
+
+                <div class="todo-container"></div>
+                <!-- 代辦事項清單 -->
+                <!-- <ul
+                  class="list-group list-group-horizontal rounded-0 bg-transparent uldom border-bottom border-Secondary pb-3"
+                >
+                  <li
+                    class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent"
+                  >
+                    <div class="form-check">
+                      <input
+                        class="form-check-input me-0"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckChecked1"
+                        aria-label="..."
+                        checked
+                      />
+                    </div>
+                  </li>
+                  <li
+                    class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent"
+                  >
+                    <p class="lead fw-normal mb-0">
+                      Buy groceries for next week
+                    </p>
+                  </li>
+                  <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic outlined example"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      編輯
+                    </button>
+                    <button type="button" class="btn btn-outline-primary">
+                      刪除
+                    </button>
+                  </div>
+                </ul> -->
+                <!-- 分隔 -->
+                <!-- <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          New message
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"
+                              >行程 :</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="recipient-name"
+                            />
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                          Send message
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- 分隔 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      //DOM
+      const inputDom = document.querySelector(".addinput");
+      const addButtonDom = document.querySelector(".addButton");
+      const todoContainerDom = document.querySelector(".todo-container");
+
+      let index = 1;
+
+      window.onload = function () {
+        //拿localStorage值
+        while (localStorage.getItem(index.toString()) !== null) {
+          const value = getLocalStorage(index.toString());
+          addList(value);
+          console.log(value);
+        }
+      };
+
+      //監聽事件區
+      addButtonDom.addEventListener("click", function () {
+        if (inputDom.value !== "") {
+          addList(inputDom.value);
+        } else {
+          alert("請輸入要新增的內容。");
+        }
+      });
+
+      //事件委派(綁訂父層事件，當子層元素觸發時，透過冒泡特性觸發父層)
+      todoContainerDom.addEventListener("click", function (event) {
+        if (event.target.classList.contains("editvaluebtn")) {
+          editButtonFN();
+        } else if (event.target.classList.contains("deleteButton")) {
+          deleteButtonFN(event);
+        }
+      });
+
+      //function區
+      function addList(value) {
+        let ListDom = ` <ul
+                  class="list-group list-group-horizontal rounded-0 bg-transparent uldom border-bottom border-Secondary pb-3" data-key = ${index}
+                >
+                  <li
+                    class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent"
+                  >
+                    <div class="form-check">
+                      <input
+                        class="form-check-input me-0"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckChecked1"
+                        aria-label="..."
+                      />
+                    </div>
+                  </li>
+                  <li
+                    class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent"
+                  >
+                    <p class="pValue lead fw-normal mb-0">
+                      ${value}
+                    </p>
+                  </li>
+                  <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic outlined example"
+                  >
+                    <button type="button" class="editButton btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick ="editButtonFN(${index})">
+                      編輯
+                    </button>
+                    <button type="button" class="deleteButton btn btn-outline-primary">
+                      刪除
+                    </button>
+                  </div>
+                  <hr class="my-4" />
+                </ul>
+                <div
+                  class="modal fade"
+                  id="exampleModal${index}"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          編輯行程
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"
+                              >行程 :</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control modalinput"
+                              id="recipient-name"
+                              value="${value}"
+                              />
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button type="button" class="editvaluebtn btn btn-primary">
+                          Edit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                `;
+        todoContainerDom.innerHTML += ListDom;
+        setLocalStorage(index.toString(), value);
+        index++;
+        inputDom.value = "";
+      }
+
+      function editButtonFN(index) {
+        const editBtn = document.querySelector(".editvaluebtn");
+        const ulDom = document.querySelector(".uldom");
+        const modalInput = document.querySelector(".modalinput");
+        const pValue = document.querySelector(".pValue");
+        // pValue.textContent.trim()=modalInput.value;
+        editBtn.setAttribute("data-bs-dismiss", "modal");
+        editBtn.addEventListener("click", function () {
+          pValue.textContent = modalInput.value;
+          const indexx = ulDom.getAttribute("data-key");
+          setLocalStorage(indexx, modalInput.value);
+        });
+      }
+      function deleteButtonFN(event) {
+        console.log("123");
+        const ulDom = event.target.parentElement.parentElement;
+        ulDom.remove();
+        //一樣用index找，直接將ul整個移除
+        const List = ulDom.getAttribute("data-key");
+        localStorage.removeItem(List);
+        //closest與最近的選擇器最配對，並找到最近的父層元素
+        // const ulDom = event.target.closest(".uldom");
+        // if (ulDom) {
+        //   ulDom.remove();
+        // }
+      }
+      function setLocalStorage(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+      }
+      function getLocalStorage(key) {
+        let data = JSON.parse(localStorage.getItem(key));
+        return data;
+      }
+    </script>
+  </body>
+</html>

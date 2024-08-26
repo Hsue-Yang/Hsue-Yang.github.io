@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .blue {
+        background-color: rgb(97, 165, 217);
+        border: none;
+      }
+      .green {
+        background-color: rgb(175, 228, 175);
+        border: none;
+      }
+      .rose {
+        background-color: rgb(232, 171, 138);
+        border: none;
+      }
+      .silver {
+        background-color: silver;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="pic">
+            <img
+              class="picture w-100"
+              src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-finish-unselect-gallery-1-202207?wid=2560&hei=1440&fmt=p-jpg&qlt=95&.v=1654902977555"
+              alt="photo"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="col-4">
+            <div class="btn-group color my-4">
+              <button class="btn btn-info blue mx-2">天藍色</button>
+              <button class="btn btn-secondary gray mx-2">太空灰色</button>
+              <button class="btn btn-success green mx-2">綠色</button>
+              <button class="btn btn-danger rose mx-2">玫瑰金色</button>
+              <button class="btn btn-secondary silver mx-2">銀色</button>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="btn-group storage my-4">
+              <button class="btn btn-primary sixfour mx-2">64GB</button>
+              <button class="btn btn-primary twofivesix mx-2">256GB</button>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="btn-group internet my-4">
+              <button class="btn btn-primary wifi mx-2">WI-FI</button>
+              <button class="btn btn-primary cell mx-2">WI-FI+Cellular</button>
+            </div>
+            <div class="detail mt-5">
+              <ul class="list-unstyled fs-3 lh-lg">
+                <li class="colortxt"></li>
+                <li class="storagetxt"></li>
+                <li class="pricetxt"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const url =
+        "https://raw.githubusercontent.com/Hsue-Yang/FileStorage/main/ipadAir.json";
+
+      let xhr = new XMLHttpRequest();
+      let dataBtn = document.querySelector(".databtn");
+      let contain = document.querySelector(".container");
+      let blueBtn = document.querySelector(".blue");
+      let grayBtn = document.querySelector(".gray");
+      let greenBtn = document.querySelector(".green");
+      let roseBtn = document.querySelector(".rose");
+      let silverBtn = document.querySelector(".silver");
+      let sixFourBtn = document.querySelector(".sixfour");
+      let twoFiveSixBtn = document.querySelector(".twofivesix");
+      let wifiBtn = document.querySelector(".wifi");
+      let cellBtn = document.querySelector(".cell");
+      let pictureImg = document.querySelector(".picture");
+      let colorTxt = document.querySelector(".colortxt");
+      let storageTxt = document.querySelector(".storagetxt");
+      let priceTxt = document.querySelector(".pricetxt");
+
+      let ipadArray = [];
+
+      window.onload = function () {
+        let color, storage, internet;
+        xhr.onload = function () {
+          ipadArray = JSON.parse(this.responseText);
+
+          blueBtn.addEventListener("click", () => {
+            pictureImg.setAttribute("src", "./blue.png");
+            // pictureImg.src = "./blue.png";因為瀏覽器會存取快取，所以無法立即重載圖片。
+            color = ipadArray.filter((item) => {
+              return item.color == "天藍色";
+            });
+            colorTxt.innerText = `顏色:${color[0].color}`;
+
+            sixFourBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "64GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+            twoFiveSixBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "256GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+          });
+
+          grayBtn.addEventListener("click", () => {
+            pictureImg.setAttribute("src", "./gray.png");
+            color = ipadArray.filter((item) => {
+              return item.color == "太空灰色";
+            });
+            colorTxt.innerText = `顏色:${color[0].color}`;
+            sixFourBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "64GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+            twoFiveSixBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "256GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+          });
+
+          greenBtn.addEventListener("click", () => {
+            pictureImg.setAttribute("src", "./green.png");
+            color = ipadArray.filter((item) => {
+              return item.color == "綠色";
+            });
+            colorTxt.innerText = `顏色:${color[0].color}`;
+            sixFourBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "64GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+            twoFiveSixBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "256GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+          });
+
+          roseBtn.addEventListener("click", () => {
+            pictureImg.setAttribute("src", "./rose.png");
+            color = ipadArray.filter((item) => {
+              return item.color == "玫瑰金色";
+            });
+            colorTxt.innerText = `顏色:${color[0].color}`;
+            sixFourBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "64GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+            twoFiveSixBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "256GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+          });
+
+          silverBtn.addEventListener("click", () => {
+            pictureImg.setAttribute("src", "./silver.png");
+            color = ipadArray.filter((item) => {
+              return item.color == "銀色";
+            });
+            colorTxt.innerText = `顏色:${color[0].color}`;
+            sixFourBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "64GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+            twoFiveSixBtn.addEventListener("click", () => {
+              storage = color.filter((item) => {
+                return item.storage == "256GB";
+              });
+              storageTxt.innerText = `容量: ${storage[0].storage}`;
+              wifiBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Wi-Fi";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+              cellBtn.addEventListener("click", () => {
+                internet = storage.filter((item) => {
+                  return item.network == "Cellular";
+                });
+                priceTxt.innerText = `價格: NT$${internet[0].price}`;
+              });
+            });
+          });
+        };
+        xhr.open("GET", url);
+        xhr.responseType = JSON;
+        xhr.send();
+      };
+
+      //會產生三個array，每一個filter後各自產生篩選到的array後，逐一用filter篩選，最後一個array只會有一個物件，再將最後物件的price拿出來即可。
+      //每案一個按鈕，讓class=active ,remove原本的在新增下一個的,並且將button上的值回傳用filter找對應的物件。
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

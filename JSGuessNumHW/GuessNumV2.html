@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 600px;
+        margin: auto;
+        text-align: center;
+      }
+      .range {
+        margin: 20px 0;
+      }
+
+      [class*="num"] {
+        border-radius: 50%;
+        border: none;
+      }
+      .main .btn-num {
+        padding-bottom: 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 50px);
+        grid-template-rows: repeat(5, 50px);
+        justify-content: center;
+      }
+      .btn-num .one {
+        grid-area: 1/3/2/4;
+      }
+      .btn-num .two {
+        grid-area: 2/4/3/4;
+      }
+      .btn-num .three {
+        grid-area: 3/5/4/6;
+      }
+      .btn-num .four {
+        grid-area: 4/4/5/4;
+      }
+      .btn-num .five {
+        grid-area: 5/3/6/4;
+      }
+      .btn-num .six {
+        grid-area: 4/2/5/3;
+      }
+      .btn-num .seven {
+        grid-area: 3/1/4/2;
+      }
+      .btn-num .eight {
+        grid-area: 2/2/3/3;
+      }
+      .btn-num .nine {
+        grid-area: 3/3/4/4;
+      }
+      .btn-num .one:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .two:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .three:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .four:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .five:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .six:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .seven:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .eight:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+      .btn-num .nine:hover {
+        background-color: aquamarine;
+        cursor: pointer;
+      }
+
+      #numInput {
+        font-size: 32px;
+      }
+      .enter {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 20px;
+      }
+      .showAnswer,
+      .guess {
+        border-radius: 10%;
+        border: none;
+        padding: 15px 30px;
+      }
+      .guess:hover {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+      .showAnswer:hover {
+        background-color: red;
+        color: white;
+        cursor: pointer;
+      }
+      .startpage {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      .startpage .pic {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .startpage .pic img {
+        width: 100%;
+        height: 100%;
+      }
+      .startpage .pic button {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 30px 80px;
+        border-radius: 50%;
+        border: none;
+      }
+      .startpage .pic button:hover {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="range"></div>
+      <div class="main">
+        <div class="btn-num">
+          <button class="num one">1</button><button class="num two">2</button
+          ><button class="num three">3</button
+          ><button class="num four">4</button><button class="num five">5</button
+          ><button class="num six">6</button><button class="num seven">7</button
+          ><button class="num eight">8</button
+          ><button class="num nine">9</button>
+        </div>
+        <input type="number" id="numInput" />
+        <div class="enter">
+          <button class="showAnswer">Answer</button>
+          <button class="guess">Guess</button>
+        </div>
+        <div class="hint"></div>
+      </div>
+    </div>
+
+    <div class="startpage">
+      <div class="pic">
+        <img class="bcgstart" src="./pic/walkator-klMii3cR9iI-unsplash.jpg" />
+        <button class="gamestart">Start</button>
+      </div>
+    </div>
+
+    <div class="endpage">
+      <div class="pic"></div>
+    </div>
+
+    <script>
+      const numberInput = document.querySelector("#numInput");
+      const showAnswer = document.querySelector(".showAnswer");
+      const guessButton = document.querySelector(".guess");
+      const showRange = document.querySelector(".range");
+      const hintArea = document.querySelector(".hint");
+      const btnNumGroup = document.querySelectorAll(".num");
+      const startButton = document.querySelector(".gamestart");
+      const image = document.querySelector(".bcgstart");
+      const bcgEnd = document.createElement("img");
+      const gameOverBtn = document.createElement("button");
+      const startPage = document.querySelector(".startpage");
+      bcgEnd.classList.add("bcgend");
+      gameOverBtn.classList.add("gameover");
+      bcgEnd.style.width = "100%";
+      bcgEnd.style.height = "100%";
+      bcgEnd.style.position = "fixed";
+      bcgEnd.style.objectFit = "cover";
+      bcgEnd.style.top = "0";
+      bcgEnd.style.left = "0";
+      gameOverBtn.style.position = "fixed";
+      gameOverBtn.style.top = "60%";
+      gameOverBtn.style.left = "50%";
+      gameOverBtn.style.transform = "translate(-50%, -50%)";
+      gameOverBtn.style.border = "none";
+      gameOverBtn.style.padding = "30px 80px";
+      gameOverBtn.style.borderRadius = "50%";
+      gameOverBtn.addEventListener("mouseover", function () {
+        gameOverBtn.style.backgroundColor = "black";
+        gameOverBtn.style.color = "white";
+        gameOverBtn.style.cursor = "pointer";
+      });
+      gameOverBtn.addEventListener("mouseout", function () {
+        gameOverBtn.style.backgroundColor = "#fff";
+        gameOverBtn.style.color = "black";
+      });
+      let minNum, maxNum, guessNum, AnsNum;
+
+      startButton.addEventListener("click", () => {
+        startButton.remove();
+        image.remove();
+        startPage.remove();
+        generateAns();
+        init();
+      });
+
+      gameOverBtn.addEventListener("click", () => {
+        bcgEnd.remove();
+        gameOverBtn.remove();
+        init();
+        location.reload();
+      });
+
+      showAnswer.addEventListener("click", () => {
+        alert(`The Answer is ${AnsNum}`);
+      });
+
+      guessButton.addEventListener("click", guess);
+
+      btnNumGroup.forEach((num) => {
+        num.addEventListener("click", () => {
+          numberInput.value += num.textContent;
+        });
+      });
+
+      function AddgameOverpage() {
+        bcgEnd.setAttribute(
+          "src",
+          "./pic/joshua-sukoff-AERa18umg2w-unsplash.jpg"
+        );
+
+        gameOverBtn.textContent = "Game Over";
+
+        document.body.append(bcgEnd, gameOverBtn);
+      }
+
+      function guess() {
+        const value = numberInput.value.trim();
+        if (
+          value === "" ||
+          value < 1 ||
+          value > 100 ||
+          value[0] === 0 ||
+          isNaN(value)
+        ) {
+          alert("Please enter a valid range !");
+          numberInput.value = "";
+          return;
+        }
+        guessNum = parseInt(value);
+
+        if (!isValidNum()) return;
+
+        if (guessNum === AnsNum) {
+          alert("Game Clear");
+          AddgameOverpage();
+          return;
+        } else if (guessNum > AnsNum) {
+          maxNum = guessNum;
+        } else if (guessNum < AnsNum) {
+          minNum = guessNum;
+        }
+        numberInput.value = "";
+        showRangeNum();
+      }
+
+      function isValidNum() {
+        if (guessNum <= minNum || guessNum >= maxNum) {
+          alert("Please enter a valid range la");
+          numberInput.value = "";
+          return false;
+        }
+        return true;
+      }
+
+      function init() {
+        minNum = 1;
+        maxNum = 100;
+        showRangeNum();
+        numberInput.value = "";
+      }
+
+      function showRangeNum() {
+        showRange.textContent = `請輸入 ${minNum} ~ ${maxNum} 之間的數字`;
+      }
+
+      function generateAns() {
+        AnsNum = randomNum();
+      }
+
+      function randomNum() {
+        let random = Math.floor(Math.random() * 99) + 1;
+        return random;
+      }
+    </script>
+  </body>
+</html>
